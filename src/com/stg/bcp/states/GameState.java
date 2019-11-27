@@ -44,6 +44,8 @@ public class GameState extends State {
 
 		//TEST
 
+		//CONDAIUHJSOAKMDIUSHFISDJ
+
 		player.render(g);
 		
 		List<Bullet> bullets = new ArrayList<>();
