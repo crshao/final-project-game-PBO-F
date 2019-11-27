@@ -3,6 +3,7 @@ package com.stg.bcp.states;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JTextField;
 import com.stg.bcp.Game;
 import com.stg.bcp.GameObject.object.Bullet;
 import com.stg.bcp.GameObject.object.Player;
@@ -26,6 +27,7 @@ public class GameState extends State {
 			bullet.tick();
 		}
 		
+		// Update Bullet
 		for(int i=0; i<bullets.size(); i++) {
 			Bullet bullet = bullets.get(i);
 			if(!bullet.getExist()) {
@@ -35,16 +37,11 @@ public class GameState extends State {
 		}
 	}
 
-	//Monkey
 	@Override
 	public void render(Graphics g) {
 		g.setColor(Color.black);
 		g.fillRect(0, 0, game.getWidth()/2, game.getHeight());
 		g.drawImage(Assets.background, 512, 0, null);
-
-		//TEST
-
-		//CONDAIUHJSOAKMDIUSHFISDJ
 
 		player.render(g);
 		
