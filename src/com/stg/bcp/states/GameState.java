@@ -1,7 +1,6 @@
 package com.stg.bcp.states;
 
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import com.stg.bcp.Game;
@@ -41,7 +40,9 @@ public class GameState extends State {
 		g.setColor(Color.black);
 		g.fillRect(0, 0, game.getWidth()/2, game.getHeight());
 		g.drawImage(Assets.background, 512, 0, null);
-		
+
+		//TEST
+
 		player.render(g);
 		
 		List<Bullet> bullets = new ArrayList<>();
