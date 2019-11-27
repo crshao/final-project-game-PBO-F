@@ -40,13 +40,17 @@ public class Player extends Object{
 
 	@Override
 	public void tick() {
-		if(game.getKeyManager().up && (int) y > borderUp)
+		if((game.getKeyManager().up || game.getKeyManager().up2)
+				&& (int) y > borderUp)
 			y -= 3;
-		if(game.getKeyManager().down && (int) y < borderDown)
+		if((game.getKeyManager().down || game.getKeyManager().down2)
+				&& (int) y < borderDown)
 			y += 3;
-		if(game.getKeyManager().left && (int) x > borderLeft)
+		if((game.getKeyManager().left || game.getKeyManager().left2)
+				&& (int) x > borderLeft)
 			x -= 3;
-		if(game.getKeyManager().right && (int) x < borderRight)
+		if((game.getKeyManager().right || game.getKeyManager().right2)
+				&& (int) x < borderRight)
 			x += 3;
 		if(game.getKeyManager().fire) {
 			bullets.add(new Bullet_Player(x, y-5));

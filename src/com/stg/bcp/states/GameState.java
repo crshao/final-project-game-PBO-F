@@ -41,12 +41,11 @@ public class GameState extends State {
 	@Override
 	public void render(Graphics g) {
 		g.setColor(Color.black);
-		g.fillRect(0, 0, game.getWidth()/2, game.getHeight());
+		g.fillRect(0, 0, 512, game.getHeight());
 		g.drawImage(Assets.background, 512, 0, null);
 
 		g.setFont(new Font("Consolas", Font.PLAIN, 50));
 		g.drawString("Hello PBO", 512, 150);
-
 
 		player.render(g);
 		
