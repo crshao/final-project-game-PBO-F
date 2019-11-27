@@ -10,14 +10,22 @@ public class Bullet_PlayerFireball extends Bullet {
 	
 	public Bullet_PlayerFireball(float x, float y) {
 		super(x, y);
-		lifetime = 20;
+		lifetime = 5;
+	}
+	
+	public int getLifetime() {
+		return lifetime;
+	}
+	
+	public void setLifetime(int lifetime) {
+		this.lifetime = lifetime-1;
 	}
 
 	@Override
 	public void tick() {
 		y -= 1;
-		lifetime--;
-		if(lifetime < 0)
+		
+		if(lifetime < 0 || y < -48)
 			exist = false;
 	}
 

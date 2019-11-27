@@ -3,10 +3,12 @@ package com.stg.bcp.display;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import javax.swing.JFrame;
+import javax.swing.JTextField;
 
 public class Display {
 	private JFrame frame;
 	private Canvas canvas;
+	private JTextField textfield;
 	
 	private String title;
 	private int width, height;
@@ -16,6 +18,7 @@ public class Display {
 		this.width = width;
 		this.height = height;
 		
+		textfield = new JTextField("Score", 10);
 		createDisplay();
 	}
 	

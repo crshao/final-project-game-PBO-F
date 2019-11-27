@@ -22,7 +22,7 @@ public class KeyManager implements KeyListener {
 		down = keys[KeyEvent.VK_S];
 		left = keys[KeyEvent.VK_A];
 		right = keys[KeyEvent.VK_D];
-		fire = keys[KeyEvent.VK_SHIFT];
+		fire = keys[KeyEvent.VK_CONTROL];
 	}
 	
 	@Override
