@@ -8,6 +8,7 @@ import com.stg.bcp.Game;
 import com.stg.bcp.GameObject.object.Bullet;
 import com.stg.bcp.GameObject.object.Player;
 import com.stg.bcp.gfx.Assets;
+import org.w3c.dom.*;
 
 public class GameState extends State {
 	private Player player;
@@ -42,6 +43,10 @@ public class GameState extends State {
 		g.setColor(Color.black);
 		g.fillRect(0, 0, game.getWidth()/2, game.getHeight());
 		g.drawImage(Assets.background, 512, 0, null);
+
+		g.setFont(new Font("Consolas", Font.PLAIN, 50));
+		g.drawString("Hello PBO", 512, 150);
+
 
 		player.render(g);
 		
