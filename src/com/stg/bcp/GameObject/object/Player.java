@@ -11,8 +11,9 @@ import com.stg.bcp.gfx.Assets;
 public class Player extends Object{
 	
 	private Game game;
-	private int cooldown, weaponSlot;
+	private int delay, weaponSlot;
 	private float power;
+	private boolean buttonPressed, shotDelayed;
 	private static final int
 		borderUp=0,
 		borderDown=560,
@@ -29,9 +30,11 @@ public class Player extends Object{
 	
 	private void initPlayer() {
 		bullets = new ArrayList<>();
-		cooldown = 0;
+		delay = 0;
 		weaponSlot = 1;
 		power = (float) 3.9;
+		buttonPressed = false;
+		shotDelayed = false;
 	}
 	
 	public List<Bullet> getBullets(){
@@ -40,6 +43,7 @@ public class Player extends Object{
 
 	@Override
 	public void tick() {
+		// Input Movement
 		if((game.getKeyManager().up || game.getKeyManager().up2)
 				&& (int) y > borderUp)
 			y -= 3;
@@ -52,26 +56,52 @@ public class Player extends Object{
 		if((game.getKeyManager().right || game.getKeyManager().right2)
 				&& (int) x < borderRight)
 			x += 3;
+		
+		// Input Shoot
 		if(game.getKeyManager().fire) {
-//			bullets.add(new Bullet_Player(x, y-5));
 			if(weaponSlot == 1) {
-				bullets.add(new Bullet_Player(x, y-5));
+				bullets.add(new Bullet_Player(x, y-4));
 				if((int) power >= 1) {
-					bullets.add(new Bullet_Player(x-6, y-5));
-					bullets.add(new Bullet_Player(x+6, y-5));
+					bullets.add(new Bullet_Player(x-6, y-4));
+					bullets.add(new Bullet_Player(x+6, y-4));
 				}
 				if((int) power >= 2) {
 					bullets.add(new Bullet_Player(x-16, y+16));
 					bullets.add(new Bullet_Player(x+16, y+16));
 				}
 			}
-			if(weaponSlot == 2) {
-				bullets.add(new Bullet_PlayerFireball(x, y-5, 0, 8));
-				bullets.add(new Bullet_PlayerFireball(x-4, y-5, -1, 8));
-				bullets.add(new Bullet_PlayerFireball(x+4, y-5, 1, 8));
+			
+			if(weaponSlot == 2 && !shotDelayed) {
+				bullets.add(new Bullet_PlayerFireball(x, y-8, 0, 8));
+				bullets.add(new Bullet_PlayerFireball(x-8, y-8, -1, 8));
+				bullets.add(new Bullet_PlayerFireball(x+8, y-8, 1, 8));
+				bullets.add(new Bullet_PlayerFireball(x-8, y+8, -3, 8));
+				bullets.add(new Bullet_PlayerFireball(x+8, y+8, 3, 8));
+			}
+			if(!shotDelayed) {
+				delay++;
+				if(delay == 3)
+					shotDelayed = true;
 			}
 		}
-			
+		
+		// Change Shot type
+		if(game.getKeyManager().change && !buttonPressed) {
+			if(weaponSlot == 1)
+				weaponSlot = 2;
+			else if(weaponSlot == 2)
+				weaponSlot = 1;
+			buttonPressed = true;
+		}
+		else if(!game.getKeyManager().change)
+			buttonPressed = false;
+		
+		// Fireball's Delay
+		if(shotDelayed) {
+			delay--;
+			if(delay == 0)
+				shotDelayed = false;
+		}
 	}
 
 	@Override

@@ -11,7 +11,7 @@ public class KeyManager implements KeyListener {
 		down, down2,
 		left, left2,
 		right, right2,
-		fire;
+		fire, change;
 	
 	public KeyManager() {
 		keys = new boolean[256];
@@ -19,19 +19,20 @@ public class KeyManager implements KeyListener {
 	
 	public void tick() {
 		up = keys[KeyEvent.VK_W];
-		up2 = keys[KeyEvent.VK_UP];
+			up2 = keys[KeyEvent.VK_UP];
 		down = keys[KeyEvent.VK_S];
-		down2 = keys[KeyEvent.VK_DOWN];
+			down2 = keys[KeyEvent.VK_DOWN];
 		left = keys[KeyEvent.VK_A];
-		left2 = keys[KeyEvent.VK_LEFT];
+			left2 = keys[KeyEvent.VK_LEFT];
 		right = keys[KeyEvent.VK_D];
-		right2 = keys[KeyEvent.VK_RIGHT];
+			right2 = keys[KeyEvent.VK_RIGHT];
+		
 		fire = keys[KeyEvent.VK_CONTROL];
+		change = keys[KeyEvent.VK_E];
 	}
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
-		System.out.println("Pressed");
 		keys[e.getKeyCode()] = true;
 	}
 
