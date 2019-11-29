@@ -11,4 +11,12 @@ public abstract class Object extends GameObject{
 		health = 10;
 	}
 	
+	public Object(float x, float y, int health) {
+		super(x,y);
+		this.health = health;
+	}
+	
+	public int getHealth() {
+		return health;
+	}
 }
