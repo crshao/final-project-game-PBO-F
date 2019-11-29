@@ -31,7 +31,7 @@ public class Player extends Object{
 		bullets = new ArrayList<>();
 		cooldown = 0;
 		weaponSlot = 1;
-		power = (float) 0;
+		power = (float) 3.9;
 	}
 	
 	public List<Bullet> getBullets(){
@@ -53,21 +53,23 @@ public class Player extends Object{
 				&& (int) x < borderRight)
 			x += 3;
 		if(game.getKeyManager().fire) {
-			bullets.add(new Bullet_Player(x, y-5));
-//			if(weaponSlot == 1) {
-//				bullets.add(new Bullet_Player(x, y-5));
-//				if((int) power >= 1) {
-//					bullets.add(new Bullet_Player(x-6, y-5));
-//					bullets.add(new Bullet_Player(x+6, y-5));
-//				}
-//				if((int) power >= 2) {
-//					bullets.add(new Bullet_Player(x-16, y+16));
-//					bullets.add(new Bullet_Player(x+16, y+16));
-//				}
-//			}
-//			if(weaponSlot == 2) {
-//				bullets.add(new Bullet_PlayerFireball(x, y-5));
-//			}
+//			bullets.add(new Bullet_Player(x, y-5));
+			if(weaponSlot == 1) {
+				bullets.add(new Bullet_Player(x, y-5));
+				if((int) power >= 1) {
+					bullets.add(new Bullet_Player(x-6, y-5));
+					bullets.add(new Bullet_Player(x+6, y-5));
+				}
+				if((int) power >= 2) {
+					bullets.add(new Bullet_Player(x-16, y+16));
+					bullets.add(new Bullet_Player(x+16, y+16));
+				}
+			}
+			if(weaponSlot == 2) {
+				bullets.add(new Bullet_PlayerFireball(x, y-5, 0, 8));
+				bullets.add(new Bullet_PlayerFireball(x-4, y-5, -1, 8));
+				bullets.add(new Bullet_PlayerFireball(x+4, y-5, 1, 8));
+			}
 		}
 			
 	}

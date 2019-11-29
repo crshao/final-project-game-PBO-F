@@ -6,26 +6,19 @@ import com.stg.bcp.gfx.Assets;
 
 public class Bullet_PlayerFireball extends Bullet {
 	
-	private int lifetime;
+	private float moveX, moveY;
 	
-	public Bullet_PlayerFireball(float x, float y) {
+	public Bullet_PlayerFireball(float x, float y, float moveX, float moveY) {
 		super(x, y);
-		lifetime = 5;
-	}
-	
-	public int getLifetime() {
-		return lifetime;
-	}
-	
-	public void setLifetime(int lifetime) {
-		this.lifetime = lifetime-1;
+		this.moveX = moveX;
+		this.moveY = moveY;
 	}
 
 	@Override
 	public void tick() {
-		y -= 1;
-		
-		if(lifetime < 0 || y < -48)
+		y -= moveY;
+		x += moveX;
+		if(y < -48)
 			exist = false;
 	}
 
