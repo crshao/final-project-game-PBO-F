@@ -36,18 +36,19 @@ public class GameState extends State {
 		mainBackground.tick();
 		stageScript.tick();
 		
+		stageScript.checkCollision(player);
+		
 		//Update Player's Bullets
 		for(Bullet bullet: player.getBullets()) {
 			bullet.tick();
+			stageScript.checkCollision(bullet);
 		}
 		for(int i=0; i<player.getBullets().size(); i++) {
 			Bullet bullet = player.getBullets().get(i);
 			if(!bullet.getExist()) {
-				System.out.println("Removed!"); //To be removed
 				player.getBullets().remove(i);
 			}
 		}
-		
 	}
 
 	@Override

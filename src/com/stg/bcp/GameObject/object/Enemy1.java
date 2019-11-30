@@ -6,8 +6,8 @@ public class Enemy1 extends Enemy{
 	
 	private boolean behavior1;
 	
-	public Enemy1(float x, float y, BufferedImage image, int health) {
-		super(x, y, 0, 2, image, health);
+	public Enemy1(float x, float y, BufferedImage image) {
+		super(x, y, 0, 2, image, 100);
 		initEnemy();
 	}
 
@@ -49,5 +49,7 @@ public class Enemy1 extends Enemy{
 				}
 			}
 		}
+		
+		determineExist();
 	}
 }

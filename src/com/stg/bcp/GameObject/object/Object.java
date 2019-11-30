@@ -16,7 +16,7 @@ public abstract class Object extends GameObject{
 	}
 	
 	public Object(float x, float y, int moveX, int moveY, BufferedImage image) {
-		super(x, y);
+		super(x, y, 8, 12);
 		this.moveX = moveX;
 		this.moveY = moveY;
 		this.image = image;
@@ -37,8 +37,16 @@ public abstract class Object extends GameObject{
 		return health;
 	}
 	
+	public void damageHealth(int damage) {
+		health -= damage;
+	}
+	
 	public boolean getExist() {
 		return exist;
+	}
+	
+	public void setExist(boolean exist) {
+		this.exist = exist;
 	}
 	
 	protected void moveHorizontal() {
@@ -49,7 +57,7 @@ public abstract class Object extends GameObject{
 		y -= moveY;
 	}
 	
-	protected void setMoveX(int moveX) {
+	public void setMoveX(int moveX) {
 		this.moveX = moveX;
 	}
 	
@@ -66,7 +74,9 @@ public abstract class Object extends GameObject{
 	}
 	
 	protected void determineExist() {
-		if(((int) y < -60 || (int) y > 560) || ((int) x < -50) || (int) x > 560)
+		if(((int) y < -60 || (int) y > 560) ||
+				((int) x < -50) || (int) x > 560 ||
+				health < 1)
 			exist = false;
 	}
 	

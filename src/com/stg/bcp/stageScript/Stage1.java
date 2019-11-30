@@ -20,7 +20,7 @@ public class Stage1 extends StageScript{
 		delay = 300;
 		counter = 4;
 		for(int i=0; i<counter; i++)
-			objects.add(new Enemy1(rand.nextInt(256) + 128, -48, Assets.enemy1, 100));
+			objects.add(new Enemy1(rand.nextInt(256) + 128, -48, Assets.enemy1));
 	}
 	
 	@Override
@@ -36,10 +36,10 @@ public class Stage1 extends StageScript{
 		
 		delay--;
 		if(delay == 0) {
-			delay = rand.nextInt(600) + 300;
+			delay = rand.nextInt(120) + 300;
 			counter = rand.nextInt(4) + 1;
 			for(int i=0; i<counter; i++)
-				objects.add(new Enemy1(rand.nextInt(256) + 128, -48, Assets.enemy1, 100));
+				objects.add(new Enemy1(rand.nextInt(256) + 128, -48, Assets.enemy1));
 		}
 	}
 }
