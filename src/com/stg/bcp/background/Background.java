@@ -16,6 +16,8 @@ public abstract class Background {
 	
 	public abstract void tick();
 	
-	public abstract void render(Graphics g);
+	public void render(Graphics g) {
+		g.drawImage(image, x, y, null);
+	}
 	
 }

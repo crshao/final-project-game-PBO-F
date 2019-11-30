@@ -10,8 +10,7 @@ public class Assets {
 	
 	public static BufferedImage
 		background, level,
-		bullet_01,
-		fireball,
+		bullet_01, bullet_02,
 		player,
 		enemy1;
 	
@@ -24,8 +23,8 @@ public class Assets {
 		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/player.png"));
 		player = sheet.crop(0, 0, width, height);
 		
-		sheet = new SpriteSheet(ImageLoader.loadImage("/textures/fireball.png"));
-		fireball = sheet.crop(0, 0, width, height);
+		sheet = new SpriteSheet(ImageLoader.loadImage("/textures/fireball.png")); //To be changed
+		bullet_02 = sheet.crop(0, 0, width, height);
 	}
 	
 }

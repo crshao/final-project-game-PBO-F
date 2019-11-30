@@ -1,17 +1,19 @@
 package com.stg.bcp.GameObject.object;
 
-import com.stg.bcp.GameObject.GameObject;;
+import java.awt.image.BufferedImage;
 
-public abstract class Bullet extends GameObject{
+public class Bullet extends Object{
 	
-	protected boolean exist;
-	
-	public Bullet(float x, float y) {
-		super(x, y);
-		exist = true;
+	public Bullet(float x, float y, int moveX, int moveY, BufferedImage image) {
+		super(x, y, moveX, moveY, image);
 	}
 	
-	public boolean getExist() {
-		return exist;
+	@Override
+	public void tick() {
+		moveHorizontal();
+		moveVertical();
+		
+		determineExist();
 	}
+
 }

@@ -1,6 +1,5 @@
 package com.stg.bcp.background;
 
-import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 public class StaticBackground extends Background {
@@ -13,10 +12,4 @@ public class StaticBackground extends Background {
 	public void tick() {
 		
 	}
-
-	@Override
-	public void render(Graphics g) {
-		g.drawImage(image, x, y, null);
-	}
-
 }

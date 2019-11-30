@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 import com.stg.bcp.Game;
-import com.stg.bcp.GameObject.object.Bullet_Player;
+import com.stg.bcp.GameObject.object.Bullet;
 import com.stg.bcp.GameObject.object.Object;
 import com.stg.bcp.gfx.Assets;
 
@@ -60,23 +60,23 @@ public class Player extends Object{
 		// Input Shoot
 		if(game.getKeyManager().fire) {
 			if(weaponSlot == 1) {
-				bullets.add(new Bullet_Player(x, y-4));
+				bullets.add(new Bullet(x, y-4, 0, 16, Assets.bullet_01));
 				if((int) power >= 1) {
-					bullets.add(new Bullet_Player(x-6, y-4));
-					bullets.add(new Bullet_Player(x+6, y-4));
+					bullets.add(new Bullet(x-8, y-4, 0, 16, Assets.bullet_01));
+					bullets.add(new Bullet(x+8, y-4, 0, 16, Assets.bullet_01));
 				}
 				if((int) power >= 2) {
-					bullets.add(new Bullet_Player(x-16, y+16));
-					bullets.add(new Bullet_Player(x+16, y+16));
+					bullets.add(new Bullet(x-16, y+16, 0, 16, Assets.bullet_01));
+					bullets.add(new Bullet(x+16, y+16, 0, 16, Assets.bullet_01));
 				}
 			}
 			
 			if(weaponSlot == 2 && !shotDelayed) {
-				bullets.add(new Bullet_PlayerFireball(x, y-8, 0, 8));
-				bullets.add(new Bullet_PlayerFireball(x-8, y-8, -1, 8));
-				bullets.add(new Bullet_PlayerFireball(x+8, y-8, 1, 8));
-				bullets.add(new Bullet_PlayerFireball(x-8, y+8, -3, 8));
-				bullets.add(new Bullet_PlayerFireball(x+8, y+8, 3, 8));
+				bullets.add(new Bullet(x, y-8, 0, 8, Assets.bullet_02));
+				bullets.add(new Bullet(x-8, y-8, -1, 8, Assets.bullet_02));
+				bullets.add(new Bullet(x+8, y-8, 1, 8, Assets.bullet_02));
+				bullets.add(new Bullet(x-8, y+8, -3, 8, Assets.bullet_02));
+				bullets.add(new Bullet(x+8, y+8, 3, 8, Assets.bullet_02));
 			}
 			if(!shotDelayed) {
 				delay++;

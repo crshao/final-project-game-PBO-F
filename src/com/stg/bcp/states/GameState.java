@@ -2,21 +2,22 @@ package com.stg.bcp.states;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.List;
 import com.stg.bcp.Game;
 import com.stg.bcp.GameObject.object.Bullet;
-import com.stg.bcp.GameObject.object.Enemy;
 import com.stg.bcp.GameObject.object.Player;
 import com.stg.bcp.background.Background;
 import com.stg.bcp.background.MovingBackground;
 import com.stg.bcp.background.StaticBackground;
 import com.stg.bcp.gfx.Assets;
+import com.stg.bcp.stageScript.Stage1;
+import com.stg.bcp.stageScript.StageScript;
+
 import org.w3c.dom.*;
 
 public class GameState extends State {
 	private Player player;
-	private List<Enemy> enemies = new ArrayList<>();
 	private Background mainBackground, sideBackground;
+	private StageScript stageScript = new Stage1(new ArrayList<>());
 	
 	public GameState(Game game) {
 		super(game);
@@ -25,8 +26,7 @@ public class GameState extends State {
 	
 	private void initState() {
 		player = new Player(game, 256, 512);
-		enemies.add(new Enemy(256, 100, 100, Assets.enemy1));
-		mainBackground = new MovingBackground(-256, 0, 1, Assets.level);
+		mainBackground = new MovingBackground(-256, 0, 4, Assets.level);
 		sideBackground = new StaticBackground(512, 0, Assets.background);
 	}
 	
@@ -34,16 +34,7 @@ public class GameState extends State {
 	public void tick() {
 		player.tick();
 		mainBackground.tick();
-		
-		//Update Enemies
-		for(Enemy enemy: enemies) {
-			enemy.tick();
-		}
-		for(int i=0; i<enemies.size(); i++) {
-			Enemy enemy = enemies.get(i);
-			if(enemy.getHealth() < 1)
-				enemies.remove(i);
-		}
+		stageScript.tick();
 		
 		//Update Player's Bullets
 		for(Bullet bullet: player.getBullets()) {
@@ -63,12 +54,8 @@ public class GameState extends State {
 	public void render(Graphics g) {
 		mainBackground.render(g);
 		player.render(g);
-		
-		//Render Enemies
-		for(Enemy enemy: enemies) {
-			enemy.render(g);
-		}
-		
+		stageScript.render(g);
+
 		//Render Player's Bullets
 		for(Bullet bullet: player.getBullets()) {
 			bullet.render(g);

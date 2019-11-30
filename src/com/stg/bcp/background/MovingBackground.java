@@ -1,29 +1,22 @@
 package com.stg.bcp.background;
 
-import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 public class MovingBackground extends Background {
 	
-	private int moveY;
+	private int moveSpeed;
 	
 	public MovingBackground(int x, int y, 
-			int moveY, BufferedImage image) {
+			int moveSpeed, BufferedImage image) {
 		super(x, y, image);
-		this.moveY = moveY;
+		this.moveSpeed = moveSpeed;
 	}
 
 	@Override
 	public void tick() {
-		y -= moveY;
+		y -= moveSpeed;
 		if(y <= -864) {
 			y = -48;
 		}
 	}
-
-	@Override
-	public void render(Graphics g) {
-		g.drawImage(image, x, y, null);
-	}
-	
 }
