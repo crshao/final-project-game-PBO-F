@@ -22,6 +22,14 @@ public abstract class GameObject {
 		this.height = height;
 	}
 	
+	public float getX() {
+		return x;
+	}
+
+	public float getY() {
+		return y;
+	}
+
 	public abstract void tick();
 	
 	public abstract void render(Graphics g);

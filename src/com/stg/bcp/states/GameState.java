@@ -12,12 +12,10 @@ import com.stg.bcp.gfx.Assets;
 import com.stg.bcp.stageScript.Stage1;
 import com.stg.bcp.stageScript.StageScript;
 
-import org.w3c.dom.*;
-
 public class GameState extends State {
 	private Player player;
 	private Background mainBackground, sideBackground;
-	private StageScript stageScript = new Stage1(new ArrayList<>());
+	private StageScript stageScript = new Stage1(new ArrayList<>(), new ArrayList<>());
 	
 	public GameState(Game game) {
 		super(game);

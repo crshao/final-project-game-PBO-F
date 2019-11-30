@@ -80,7 +80,7 @@ public class Player extends Object{
 			}
 			if(!shotDelayed) {
 				delay++;
-				if(delay == 3)
+				if(delay == 6)
 					shotDelayed = true;
 			}
 		}

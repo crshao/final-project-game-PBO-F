@@ -1,6 +1,8 @@
 package com.stg.bcp.GameObject.object;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import com.stg.bcp.gfx.Assets;
 
 public class Enemy1 extends Enemy{
 	
@@ -8,20 +10,23 @@ public class Enemy1 extends Enemy{
 	
 	public Enemy1(float x, float y, BufferedImage image) {
 		super(x, y, 0, 2, image, 100);
+		
 		initEnemy();
 	}
 
 	private void initEnemy() {
 		actTime = rand.nextInt(60)+30;
+		fire = false;
 		behavior1 = true;
 	}
-
+	
 	@Override
 	public void tick() {
 		if(behavior1) {
 			moveVertical();
 			actTime--;
 			if(actTime == 0) {
+				fire = true;
 				actTime = 90;
 				isMove = false;
 				behavior1 = false;
@@ -34,6 +39,7 @@ public class Enemy1 extends Enemy{
 					moveX *= -1;
 				actTime--;
 				if(actTime == 0) {
+					fire = true;
 					actTime = 90;
 					isMove = false;
 				}
