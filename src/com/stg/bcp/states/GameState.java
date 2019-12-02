@@ -53,7 +53,7 @@ public class GameState extends State {
 	public void render(Graphics g) {
 		mainBackground.render(g);
 		player.render(g);
-		stageScript(g);
+		stageScript.render(g);
 
 		//Render player's bullets
 		for(Bullet bullet: player.getBullets())
