@@ -14,9 +14,9 @@ public class MovingBackground extends Background {
 
 	@Override
 	public void tick() {
-		y -= moveSpeed;
-		if(y <= -864) {
-			y = -48;
+		y += moveSpeed;
+		if(y >= 0) {
+			y = -816;
 		}
 	}
 }
