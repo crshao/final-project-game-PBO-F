@@ -6,6 +6,7 @@ import com.stg.bcp.GameObject.object.Bullet;
 import com.stg.bcp.GameObject.object.Enemy;
 import com.stg.bcp.GameObject.object.Enemy1;
 import com.stg.bcp.GameObject.object.Enemy2;
+import com.stg.bcp.GameObject.object.Enemy3;
 import com.stg.bcp.gfx.Assets;
 
 public class Stage1 extends StageScript{
@@ -29,9 +30,17 @@ public class Stage1 extends StageScript{
 	private void tick1() {
 		for(Enemy enemy: enemies) {
 			enemy.tick();
-			if(enemy.getFire())
+			if(enemy.getFire()) {
 				bullets.add(new Bullet(enemy.getX(), enemy.getY(), 0, -2, Assets.bullet_02));
-			enemy.setFire(false);
+				enemy.setFire(false);
+			}
+			else if(enemy.getFire1()) {
+				bullets.add(new Bullet(enemy.getX(), enemy.getY(), 0, -2, Assets.bullet_03));
+				enemy.setFire1(false);
+			}
+			else if (enemy.getFire2())
+				bullets.add(new Bullet(enemy.getX(), enemy.getY(), 0, -5/2, Assets.beam1));
+				enemy.setFire2(false);
 		}
 		for(int i=0; i<enemies.size(); i++) {
 			Enemy enemy = enemies.get(i);
@@ -51,11 +60,13 @@ public class Stage1 extends StageScript{
 		delay--;
 		if(delay == 0) {
 			delay = rand.nextInt(120) + 300;
-			counter = rand.nextInt(4) + 1;
+			counter = rand.nextInt(5) + 1;
 			for(int i=0; i<counter; i++)
 				enemies.add(new Enemy1(rand.nextInt(256) + 128, -48, Assets.enemy1));
 			for(int i=0; i<counter/2; i++)
 				enemies.add(new Enemy2(rand.nextInt(256) + 128, -48, Assets.enemy2));
+			for(int i=0; i<counter/3; i++)
+				enemies.add(new Enemy3(rand.nextInt(256) + 50, -48, Assets.enemy3));
 		}
 	}
 	
