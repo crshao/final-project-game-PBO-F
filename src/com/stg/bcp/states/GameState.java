@@ -61,9 +61,8 @@ public class GameState extends State {
 			bullet.render(g);
 		}
 		sideBackground.render(g);
-		g.setColor(Color.black);
-		g.fillRect(0, 0, game.getWidth()/2, game.getHeight());
-		g.drawImage(Assets.background, 512, 0, null);
+//		g.fillRect(0, 0, game.getWidth()/2, game.getHeight());
+//		g.drawImage(Assets.background, 512, 0, null);
 		g.setFont(new Font("Consolas", Font.PLAIN, 50));
 		g.drawString("Hello PBO", 512, 150);
 	}
