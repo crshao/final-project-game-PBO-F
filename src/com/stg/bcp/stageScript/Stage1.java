@@ -2,7 +2,6 @@ package com.stg.bcp.stageScript;
 
 import java.util.List;
 import java.util.Random;
-import com.stg.bcp.GameObject.object.Object;
 import com.stg.bcp.GameObject.object.Bullet;
 import com.stg.bcp.GameObject.object.Enemy;
 import com.stg.bcp.GameObject.object.Enemy1;
@@ -26,8 +25,7 @@ public class Stage1 extends StageScript{
 			enemies.add(new Enemy1(rand.nextInt(256) + 128, -48, Assets.enemy1));
 	}
 	
-	@Override
-	public void tick() {
+	private void tick1() {
 		for(Enemy enemy: enemies) {
 			enemy.tick();
 			if(enemy.getFire())
@@ -56,5 +54,10 @@ public class Stage1 extends StageScript{
 			for(int i=0; i<counter; i++)
 				enemies.add(new Enemy1(rand.nextInt(256) + 128, -48, Assets.enemy1));
 		}
+	}
+	
+	@Override
+	public void tick() {
+		tick1();
 	}
 }

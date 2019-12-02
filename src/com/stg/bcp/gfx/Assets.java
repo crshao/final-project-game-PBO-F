@@ -17,14 +17,12 @@ public class Assets {
 	public static void init() {
 		background = ImageLoader.loadImage("/textures/background.png");
 		level = ImageLoader.loadImage("/textures/level.png");
-		bullet_01 = ImageLoader.loadImage("/textures/bullet_01.png");
+		bullet_01 = ImageLoader.loadImage("/textures/bullet01.png");
+		bullet_02 = ImageLoader.loadImage("/textures/bullet02.png");
 		enemy1 = ImageLoader.loadImage("/textures/enemy1.png");
 		
 		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/player.png"));
 		player = sheet.crop(0, 0, width, height);
-		
-		sheet = new SpriteSheet(ImageLoader.loadImage("/textures/fireball.png")); //To be changed
-		bullet_02 = sheet.crop(0, 0, width, height);
 	}
 	
 }
