@@ -57,6 +57,11 @@ public abstract class Object extends GameObject{
 		y -= moveY;
 	}
 	
+	protected void move() {
+		moveHorizontal();
+		moveVertical();
+	}
+	
 	public void setMoveX(int moveX) {
 		this.moveX = moveX;
 	}

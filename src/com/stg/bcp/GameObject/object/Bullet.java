@@ -10,9 +10,7 @@ public class Bullet extends Object{
 	
 	@Override
 	public void tick() {
-		moveHorizontal();
-		moveVertical();
-		
+		move();
 		determineExist();
 	}
 

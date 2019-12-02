@@ -5,6 +5,7 @@ import java.util.Random;
 import com.stg.bcp.GameObject.object.Bullet;
 import com.stg.bcp.GameObject.object.Enemy;
 import com.stg.bcp.GameObject.object.Enemy1;
+import com.stg.bcp.GameObject.object.Enemy2;
 import com.stg.bcp.gfx.Assets;
 
 public class Stage1 extends StageScript{
@@ -29,7 +30,7 @@ public class Stage1 extends StageScript{
 		for(Enemy enemy: enemies) {
 			enemy.tick();
 			if(enemy.getFire())
-				bullets.add(new Bullet(enemy.getX(), enemy.getY(), 0, -2, Assets.bullet_01));
+				bullets.add(new Bullet(enemy.getX(), enemy.getY(), 0, -2, Assets.bullet_02));
 			enemy.setFire(false);
 		}
 		for(int i=0; i<enemies.size(); i++) {
@@ -53,6 +54,8 @@ public class Stage1 extends StageScript{
 			counter = rand.nextInt(4) + 1;
 			for(int i=0; i<counter; i++)
 				enemies.add(new Enemy1(rand.nextInt(256) + 128, -48, Assets.enemy1));
+			for(int i=0; i<counter/2; i++)
+				enemies.add(new Enemy2(rand.nextInt(256) + 128, -48, Assets.enemy2));
 		}
 	}
 	

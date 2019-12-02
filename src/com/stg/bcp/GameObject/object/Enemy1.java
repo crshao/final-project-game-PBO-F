@@ -1,8 +1,6 @@
 package com.stg.bcp.GameObject.object;
 
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import com.stg.bcp.gfx.Assets;
 
 public class Enemy1 extends Enemy{
 	
