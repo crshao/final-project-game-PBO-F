@@ -51,6 +51,16 @@ public class GameState extends State {
 
 	@Override
 	public void render(Graphics g) {
+		mainBackground.render(g);
+		player.render(g);
+		stageScript(g);
+
+		//Render player's bullets
+		for(Bullet bullet: player.getBullets())
+		{
+			bullet.render(g);
+		}
+		sideBackground.render(g);
 		g.setColor(Color.black);
 		g.fillRect(0, 0, game.getWidth()/2, game.getHeight());
 		g.drawImage(Assets.background, 512, 0, null);
