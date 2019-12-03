@@ -51,19 +51,17 @@ public class GameState extends State {
 
 	@Override
 	public void render(Graphics g) {
-		mainBackground.render(g);
-		player.render(g);
-		stageScript.render(g);
+			mainBackground.render(g);
+			player.render(g);
+			stageScript.render(g);
 
-		//Render player's bullets
-		for(Bullet bullet: player.getBullets())
-		{
-			bullet.render(g);
-		}
-		sideBackground.render(g);
+			//Render player's bullets
+			for(Bullet bullet: player.getBullets())
+				bullet.render(g);
+			sideBackground.render(g);
 
-		g.setFont(new Font("Consolas", Font.PLAIN, 50));
-		g.drawString("Hello PBO", 512, 150);
+			g.setFont(new Font("Consolas", Font.PLAIN, 50));
+			g.drawString("Hello PBO", 512, 150);
 	}
 	
 }

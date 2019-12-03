@@ -12,7 +12,7 @@ public class Enemy2 extends Enemy{
 
 	private void initEnemy() {
 		actTime = rand.nextInt(60) + 60;
-		fire1 = false;
+		fire = false;
 	}
 	
 	@Override
@@ -27,7 +27,7 @@ public class Enemy2 extends Enemy{
 		
 		actTime--;
 		if(actTime == 0) {
-			fire1 = true;
+			fire = true;
 			actTime = rand.nextInt(75) + 45;
 		}
 		

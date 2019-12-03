@@ -27,9 +27,7 @@ public class Stage1 extends StageScript{
 			enemies.add(new Enemy1(rand.nextInt(256) + 128, -48, Assets.enemy1));
 	}
 	
-	private void tick1() {
-		
-		
+	private void spawnEnemy() {
 		delay--;
 		if(delay == 0) {
 			delay = rand.nextInt(120) + 300;
@@ -43,21 +41,22 @@ public class Stage1 extends StageScript{
 		}
 	}
 	
+	private void enemyFire(Enemy enemy) {
+		if(enemy instanceof Enemy1)
+			bullets.add(new Bullet(enemy.getX(), enemy.getY(), 0, -2, Assets.bullet_02));
+		if(enemy instanceof Enemy2)
+			bullets.add(new Bullet(enemy.getX(), enemy.getY(), 0, -2, Assets.bullet_03));
+		if(enemy instanceof Enemy3)
+			bullets.add(new Bullet(enemy.getX(), enemy.getY(), 0, -5/2, Assets.beam1));
+		enemy.setFire(false);
+	}
+	
 	@Override
 	public void tick() {
 		for(Enemy enemy: enemies) {
 			enemy.tick();
-			if(enemy.isFire1()) {
-				bullets.add(new Bullet(enemy.getX(), enemy.getY(), 0, -2, Assets.bullet_02));
-				enemy.setFire1(false);
-			}
-			else if(enemy.isFire2()) {
-				bullets.add(new Bullet(enemy.getX(), enemy.getY(), 0, -2, Assets.bullet_03));
-				enemy.setFire1(false);
-			}
-			else if (enemy.isFire3())
-				bullets.add(new Bullet(enemy.getX(), enemy.getY(), 0, -5/2, Assets.beam1));
-				enemy.setFire2(false);
+			if(enemy.isFire())
+				enemyFire(enemy);
 		}
 		for(int i=0; i<enemies.size(); i++) {
 			Enemy enemy = enemies.get(i);
@@ -74,6 +73,6 @@ public class Stage1 extends StageScript{
 				bullets.remove(i);
 		}
 		
-		tick1();
+		spawnEnemy();
 	}
 }
