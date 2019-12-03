@@ -28,34 +28,7 @@ public class Stage1 extends StageScript{
 	}
 	
 	private void tick1() {
-		for(Enemy enemy: enemies) {
-			enemy.tick();
-			if(enemy.getFire()) {
-				bullets.add(new Bullet(enemy.getX(), enemy.getY(), 0, -2, Assets.bullet_02));
-				enemy.setFire(false);
-			}
-			else if(enemy.getFire1()) {
-				bullets.add(new Bullet(enemy.getX(), enemy.getY(), 0, -2, Assets.bullet_03));
-				enemy.setFire1(false);
-			}
-			else if (enemy.getFire2())
-				bullets.add(new Bullet(enemy.getX(), enemy.getY(), 0, -5/2, Assets.beam1));
-				enemy.setFire2(false);
-		}
-		for(int i=0; i<enemies.size(); i++) {
-			Enemy enemy = enemies.get(i);
-			if(!enemy.getExist())
-				enemies.remove(i);
-		}
 		
-		for(Bullet bullet: bullets) {
-			bullet.tick();
-		}
-		for(int i=0; i< bullets.size(); i++) {
-			Bullet bullet = bullets.get(i);
-			if(!bullet.getExist())
-				bullets.remove(i);
-		}
 		
 		delay--;
 		if(delay == 0) {
@@ -72,6 +45,35 @@ public class Stage1 extends StageScript{
 	
 	@Override
 	public void tick() {
+		for(Enemy enemy: enemies) {
+			enemy.tick();
+			if(enemy.isFire1()) {
+				bullets.add(new Bullet(enemy.getX(), enemy.getY(), 0, -2, Assets.bullet_02));
+				enemy.setFire1(false);
+			}
+			else if(enemy.isFire2()) {
+				bullets.add(new Bullet(enemy.getX(), enemy.getY(), 0, -2, Assets.bullet_03));
+				enemy.setFire1(false);
+			}
+			else if (enemy.isFire3())
+				bullets.add(new Bullet(enemy.getX(), enemy.getY(), 0, -5/2, Assets.beam1));
+				enemy.setFire2(false);
+		}
+		for(int i=0; i<enemies.size(); i++) {
+			Enemy enemy = enemies.get(i);
+			if(!enemy.isExist())
+				enemies.remove(i);
+		}
+		
+		for(Bullet bullet: bullets) {
+			bullet.tick();
+		}
+		for(int i=0; i< bullets.size(); i++) {
+			Bullet bullet = bullets.get(i);
+			if(!bullet.isExist())
+				bullets.remove(i);
+		}
+		
 		tick1();
 	}
 }

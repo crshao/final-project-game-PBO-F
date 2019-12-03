@@ -26,6 +26,8 @@ public abstract class StageScript {
 			
 			if(r1.intersects(r2)) {
 				collision.damageHealth(1);
+				
+				
 				enemy.damageHealth(1);
 			}
 		}

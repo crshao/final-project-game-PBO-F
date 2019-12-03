@@ -43,7 +43,7 @@ public class GameState extends State {
 		}
 		for(int i=0; i<player.getBullets().size(); i++) {
 			Bullet bullet = player.getBullets().get(i);
-			if(!bullet.getExist()) {
+			if(!bullet.isExist()) {
 				player.getBullets().remove(i);
 			}
 		}
@@ -61,8 +61,7 @@ public class GameState extends State {
 			bullet.render(g);
 		}
 		sideBackground.render(g);
-//		g.fillRect(0, 0, game.getWidth()/2, game.getHeight());
-//		g.drawImage(Assets.background, 512, 0, null);
+
 		g.setFont(new Font("Consolas", Font.PLAIN, 50));
 		g.drawString("Hello PBO", 512, 150);
 	}

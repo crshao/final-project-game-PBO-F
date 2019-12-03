@@ -14,7 +14,7 @@ public class Enemy1 extends Enemy{
 
 	private void initEnemy() {
 		actTime = rand.nextInt(60)+30;
-		fire = false;
+		fire1 = false;
 		behavior1 = true;
 	}
 	
@@ -24,7 +24,7 @@ public class Enemy1 extends Enemy{
 			moveVertical();
 			actTime--;
 			if(actTime == 0) {
-				fire = true;
+				fire1 = true;
 				actTime = 90;
 				isMove = false;
 				behavior1 = false;
@@ -37,7 +37,7 @@ public class Enemy1 extends Enemy{
 					moveX *= -1;
 				actTime--;
 				if(actTime == 0) {
-					fire = true;
+					fire1 = true;
 					actTime = 90;
 					isMove = false;
 				}
