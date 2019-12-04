@@ -41,7 +41,7 @@ public class Display {
 		canvas.setFocusable(false);
 
 		healthBarPanel = new JPanel();
-		healthBarPanel.setBounds(520, 30, 200, 30);
+		healthBarPanel.setBounds(520, 110, 200, 30);
 		healthBarPanel.setBackground(Color.GREEN);
 		frame.add(healthBarPanel);
 

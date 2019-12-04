@@ -18,12 +18,14 @@ public class GameState extends State {
 	private Player player;
 	private Background mainBackground, sideBackground;
 	private StageScript stageScript = new Stage1(new ArrayList<>(), new ArrayList<>());
-
+	public static Integer currentLevel, currentScore;
 //	public JPanel healthBarPanel;
 	
 	public GameState(Game game) {
 		super(game);
 		initState();
+		currentLevel = 1;
+		currentScore = 0;
 	}
 	
 	private void initState() {
@@ -69,8 +71,11 @@ public class GameState extends State {
 //		g.drawImage(Assets.background, 512, 0, null);
 		g.setFont(new Font("Consolas", Font.PLAIN, 30));
 		g.setColor(Color.WHITE);
-		g.drawString("HP:", 520, 25);
-
+		g.drawString("Level " + currentLevel.toString(), 520, 50);
+		g.drawString("HP:", 520, 100);
+		g.drawString("PowerUp:", 520, 180);
+		g.drawString("*simbol-simbol", 520, 210);
+		g.drawString("Score:\n" + currentScore.toString(), 520, 300);
 //		healthBarPanel = new JPanel();
 //		healthBarPanel.setBounds(100, 15, 200, 30);
 //		healthBarPanel.setBackground(Color.GREEN);
