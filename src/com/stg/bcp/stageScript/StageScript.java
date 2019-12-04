@@ -7,6 +7,7 @@ import com.stg.bcp.GameObject.object.Enemy;
 import com.stg.bcp.GameObject.object.Bullet;
 import com.stg.bcp.GameObject.object.Object;
 import com.stg.bcp.GameObject.object.Player;
+import com.stg.bcp.display.Display;
 
 public abstract class StageScript {
 	
@@ -39,6 +40,8 @@ public abstract class StageScript {
 				if(r1.intersects(r2)) {
 					collision.damageHealth(1);
 					bullet.damageHealth(1);
+					//HealthBar Decreased
+					Display.damageReceived();
 				}
 			}
 		}

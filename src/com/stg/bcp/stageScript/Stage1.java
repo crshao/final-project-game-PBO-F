@@ -7,6 +7,7 @@ import com.stg.bcp.GameObject.object.Enemy;
 import com.stg.bcp.GameObject.object.Enemy1;
 import com.stg.bcp.GameObject.object.Enemy2;
 import com.stg.bcp.GameObject.object.Enemy3;
+import com.stg.bcp.display.Display;
 import com.stg.bcp.gfx.Assets;
 
 public class Stage1 extends StageScript{
@@ -69,10 +70,14 @@ public class Stage1 extends StageScript{
 		}
 		for(int i=0; i< bullets.size(); i++) {
 			Bullet bullet = bullets.get(i);
-			if(!bullet.isExist())
+			if (!bullet.isExist())
+			{
 				bullets.remove(i);
+//				//Untuk decrease healthbar
+//				Display.damageReceived();
+			}
 		}
-		
+
 		spawnEnemy();
 	}
 }

@@ -39,7 +39,6 @@ public class Game implements Runnable{
 		this.title = title;
 		keyManager = new KeyManager();
 
-
 		healthBarPanel = new JPanel();
 		healthBarPanel.setBounds(250, 250, 300, 30);
 		healthBarPanel.setBackground(Color.GREEN);

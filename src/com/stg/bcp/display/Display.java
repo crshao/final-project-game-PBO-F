@@ -5,7 +5,12 @@ import javax.swing.*;
 
 public class Display {
 	private JFrame frame;
-	public JPanel healthBarPanel;
+
+	//HealthBar
+	public static JPanel healthBarPanel;
+	public static JProgressBar healthBar;
+	public static int hp;
+
 	private Canvas canvas;
 	private JTextField textfield;
 	
@@ -39,11 +44,24 @@ public class Display {
 		healthBarPanel.setBounds(520, 30, 200, 30);
 		healthBarPanel.setBackground(Color.GREEN);
 		frame.add(healthBarPanel);
-		
+
+		hp = 100;
+		healthBar = new JProgressBar(0, 100);
+		healthBar.setPreferredSize(new Dimension(200, 30));
+		healthBar.setValue(100);
+		healthBarPanel.add(healthBar);
+
 		frame.add(canvas);
 		frame.pack();
 	}
-	
+
+
+	public static void damageReceived()
+	{
+		hp -= 10;
+		healthBar.setValue(hp);
+	}
+
 	public Canvas getCanvas() {
 		return canvas;
 	}
