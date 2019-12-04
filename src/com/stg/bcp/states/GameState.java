@@ -47,7 +47,7 @@ public class GameState extends State {
 		}
 		for(int i=0; i<player.getBullets().size(); i++) {
 			Bullet bullet = player.getBullets().get(i);
-			if(!bullet.getExist()) {
+			if(!bullet.isExist()) {
 				player.getBullets().remove(i);
 			}
 		}
@@ -55,9 +55,9 @@ public class GameState extends State {
 
 	@Override
 	public void render(Graphics g) {
-		mainBackground.render(g);
-		player.render(g);
-		stageScript.render(g);
+			mainBackground.render(g);
+			player.render(g);
+			stageScript.render(g);
 
 		//Render player's bullets
 		for(Bullet bullet: player.getBullets())

@@ -41,7 +41,7 @@ public abstract class Object extends GameObject{
 		health -= damage;
 	}
 	
-	public boolean getExist() {
+	public boolean isExist() {
 		return exist;
 	}
 	

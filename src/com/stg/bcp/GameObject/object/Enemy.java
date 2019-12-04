@@ -14,14 +14,14 @@ public abstract class Enemy extends Object{
 		super(x, y, moveX, moveY, image, health);
 	}
 	
+	public boolean isFire() {
+		return fire;
+	}
+
 	public void setFire(boolean fire) {
 		this.fire = fire;
 	}
-	
-	public boolean getFire() {
-		return fire;
-	}
-	
+
 	@Override
 	protected void moveVertical() {
 		y += moveY;
