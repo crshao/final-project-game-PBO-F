@@ -1,12 +1,11 @@
 package com.stg.bcp.display;
 
-import java.awt.Canvas;
-import java.awt.Dimension;
-import javax.swing.JFrame;
-import javax.swing.JTextField;
+import java.awt.*;
+import javax.swing.*;
 
 public class Display {
 	private JFrame frame;
+	public JPanel healthBarPanel;
 	private Canvas canvas;
 	private JTextField textfield;
 	
@@ -35,6 +34,11 @@ public class Display {
 		canvas.setMaximumSize(new Dimension(width, height));
 		canvas.setMinimumSize(new Dimension(width, height));
 		canvas.setFocusable(false);
+
+		healthBarPanel = new JPanel();
+		healthBarPanel.setBounds(520, 30, 200, 30);
+		healthBarPanel.setBackground(Color.GREEN);
+		frame.add(healthBarPanel);
 		
 		frame.add(canvas);
 		frame.pack();

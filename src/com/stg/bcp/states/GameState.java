@@ -12,10 +12,14 @@ import com.stg.bcp.gfx.Assets;
 import com.stg.bcp.stageScript.Stage1;
 import com.stg.bcp.stageScript.StageScript;
 
+import javax.swing.*;
+
 public class GameState extends State {
 	private Player player;
 	private Background mainBackground, sideBackground;
 	private StageScript stageScript = new Stage1(new ArrayList<>(), new ArrayList<>());
+
+//	public JPanel healthBarPanel;
 	
 	public GameState(Game game) {
 		super(game);
@@ -63,8 +67,13 @@ public class GameState extends State {
 		sideBackground.render(g);
 //		g.fillRect(0, 0, game.getWidth()/2, game.getHeight());
 //		g.drawImage(Assets.background, 512, 0, null);
-		g.setFont(new Font("Consolas", Font.PLAIN, 50));
-		g.drawString("Hello PBO", 512, 150);
+		g.setFont(new Font("Consolas", Font.PLAIN, 30));
+		g.setColor(Color.WHITE);
+		g.drawString("HP:", 520, 25);
+
+//		healthBarPanel = new JPanel();
+//		healthBarPanel.setBounds(100, 15, 200, 30);
+//		healthBarPanel.setBackground(Color.GREEN);
 	}
 	
 }

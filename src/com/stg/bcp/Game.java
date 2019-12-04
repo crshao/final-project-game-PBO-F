@@ -1,6 +1,6 @@
 package com.stg.bcp;
 
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.image.BufferStrategy;
 import com.stg.bcp.display.Display;
 import com.stg.bcp.gfx.Assets;
@@ -9,10 +9,16 @@ import com.stg.bcp.states.GameState;
 import com.stg.bcp.states.MenuState;
 import com.stg.bcp.states.State;
 
+import javax.swing.*;
+
 public class Game implements Runnable{
 	private Display display;
 	public int width, height;
 	public String title;
+	public Container con;
+
+	//Interface menu
+	public JPanel healthBarPanel;
 	
 	private boolean running = false;
 	private Thread thread;
@@ -32,13 +38,18 @@ public class Game implements Runnable{
 		this.height = height;
 		this.title = title;
 		keyManager = new KeyManager();
+
+
+		healthBarPanel = new JPanel();
+		healthBarPanel.setBounds(250, 250, 300, 30);
+		healthBarPanel.setBackground(Color.GREEN);
 	}
 	
 	private void init() {
 		display = new Display(title, width, height);
 		display.getFrame().addKeyListener(keyManager);
 		Assets.init();
-		
+
 		gameState = new GameState(this);
 		menuState = new MenuState(this);
 		State.setState(gameState);
