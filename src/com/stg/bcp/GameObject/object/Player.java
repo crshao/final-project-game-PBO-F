@@ -11,7 +11,7 @@ import com.stg.bcp.gfx.Assets;
 public class Player extends Object{
 	
 	private Game game;
-	private int delay, weaponSlot;
+	private int delay, weaponSlot, score;
 	private float power;
 	private boolean buttonPressed, shotDelayed;
 	private static final int
@@ -35,10 +35,19 @@ public class Player extends Object{
 		power = (float) 3.9;
 		buttonPressed = false;
 		shotDelayed = false;
+		score = 0;
 	}
 	
 	public List<Bullet> getBullets(){
 		return bullets;
+	}
+	
+	public void addScore(int score) {
+		this.score += score;
+	}
+	
+	public int getScore() {
+		return score;
 	}
 
 	@Override

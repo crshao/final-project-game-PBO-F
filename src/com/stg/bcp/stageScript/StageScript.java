@@ -4,12 +4,15 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.List;
 import com.stg.bcp.GameObject.object.Enemy;
+import com.stg.bcp.GameObject.object.Enemy1;
+import com.stg.bcp.GameObject.object.Enemy2;
+import com.stg.bcp.GameObject.object.Enemy3;
 import com.stg.bcp.GameObject.object.Bullet;
 import com.stg.bcp.GameObject.object.Object;
 import com.stg.bcp.GameObject.object.Player;
-import com.stg.bcp.display.Display;
+import com.stg.bcp.gfx.Assets;
 
-public abstract class StageScript {
+public abstract class StageScript implements UpdateObjects{
 	
 	protected List<Enemy> enemies;
 	protected List<Bullet> bullets;
@@ -27,8 +30,10 @@ public abstract class StageScript {
 			
 			if(r1.intersects(r2)) {
 				collision.damageHealth(1);
-				
-				enemy.damageHealth(1);
+				if(collision instanceof Player)
+					enemy.damageHealth(1000);
+				else
+					enemy.damageHealth(1);
 			}
 		}
 		
@@ -39,11 +44,19 @@ public abstract class StageScript {
 				if(r1.intersects(r2)) {
 					collision.damageHealth(1);
 					bullet.damageHealth(1);
-					//HealthBar Decreased
-					Display.damageReceived();
 				}
 			}
 		}
+	}
+	
+	protected void enemyFire(Enemy enemy) {
+		if(enemy instanceof Enemy1)
+			bullets.add(new Bullet(enemy.getX(), enemy.getY(), 0, -2, Assets.bullet_02));
+		if(enemy instanceof Enemy2)
+			bullets.add(new Bullet(enemy.getX(), enemy.getY(), 0, -2, Assets.bullet_03));
+		if(enemy instanceof Enemy3)
+			bullets.add(new Bullet(enemy.getX(), enemy.getY(), 0, -3, Assets.beam1));
+		enemy.setFire(false);
 	}
 	
 	public abstract void tick(); 

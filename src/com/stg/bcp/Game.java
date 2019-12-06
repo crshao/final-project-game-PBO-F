@@ -97,6 +97,13 @@ public class Game implements Runnable{
 			timer += now - lastTime;
 			lastTime = now;
 			
+			
+			if(State.getState().isToMenu()) {
+				State.setState(menuState);
+				State.getState().setToMenu(false);
+				continue;
+			}
+			
 			if(delta >= 1) {
 				tick();
 				render();	

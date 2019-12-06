@@ -13,7 +13,7 @@ import com.stg.bcp.gfx.Assets;
 public class Stage1 extends StageScript{
 	
 	private Random rand = new Random();
-	private int delay, counter;
+	private int delay, counter, newScore;
 	
 	public Stage1(List<Enemy> enemies, List<Bullet> bullets) {
 		super(enemies, bullets);
@@ -42,16 +42,6 @@ public class Stage1 extends StageScript{
 		}
 	}
 	
-	private void enemyFire(Enemy enemy) {
-		if(enemy instanceof Enemy1)
-			bullets.add(new Bullet(enemy.getX(), enemy.getY(), 0, -2, Assets.bullet_02));
-		if(enemy instanceof Enemy2)
-			bullets.add(new Bullet(enemy.getX(), enemy.getY(), 0, -2, Assets.bullet_03));
-		if(enemy instanceof Enemy3)
-			bullets.add(new Bullet(enemy.getX(), enemy.getY(), 0, -5/2, Assets.beam1));
-		enemy.setFire(false);
-	}
-	
 	@Override
 	public void tick() {
 		for(Enemy enemy: enemies) {
@@ -59,24 +49,11 @@ public class Stage1 extends StageScript{
 			if(enemy.isFire())
 				enemyFire(enemy);
 		}
-		for(int i=0; i<enemies.size(); i++) {
-			Enemy enemy = enemies.get(i);
-			if(!enemy.isExist())
-				enemies.remove(i);
-		}
+		updateEnemy(enemies);
 		
-		for(Bullet bullet: bullets) {
+		for(Bullet bullet: bullets)
 			bullet.tick();
-		}
-		for(int i=0; i< bullets.size(); i++) {
-			Bullet bullet = bullets.get(i);
-			if (!bullet.isExist())
-			{
-				bullets.remove(i);
-//				//Untuk decrease healthbar
-//				Display.damageReceived();
-			}
-		}
+		updateBullet(bullets);
 
 		spawnEnemy();
 	}

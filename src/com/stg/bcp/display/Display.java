@@ -12,7 +12,6 @@ public class Display {
 	public static int hp;
 
 	private Canvas canvas;
-	private JTextField textfield;
 	
 	private String title;
 	private int width, height;
@@ -22,7 +21,6 @@ public class Display {
 		this.width = width;
 		this.height = height;
 		
-		textfield = new JTextField("Score", 10);
 		createDisplay();
 	}
 	
@@ -40,16 +38,16 @@ public class Display {
 		canvas.setMinimumSize(new Dimension(width, height));
 		canvas.setFocusable(false);
 
-		healthBarPanel = new JPanel();
-		healthBarPanel.setBounds(520, 110, 200, 30);
-		healthBarPanel.setBackground(Color.GREEN);
-		frame.add(healthBarPanel);
-
-		hp = 100;
-		healthBar = new JProgressBar(0, 100);
-		healthBar.setPreferredSize(new Dimension(200, 30));
-		healthBar.setValue(100);
-		healthBarPanel.add(healthBar);
+//		healthBarPanel = new JPanel();
+//		healthBarPanel.setBounds(520, 110, 200, 30);
+//		healthBarPanel.setBackground(Color.GREEN);
+//		frame.add(healthBarPanel);
+//
+//		hp = 100;
+//		healthBar = new JProgressBar(0, 100);
+//		healthBar.setPreferredSize(new Dimension(200, 30));
+//		healthBar.setValue(100);
+//		healthBarPanel.add(healthBar);
 
 		frame.add(canvas);
 		frame.pack();
