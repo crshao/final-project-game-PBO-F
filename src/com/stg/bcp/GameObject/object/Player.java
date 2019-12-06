@@ -69,28 +69,29 @@ public class Player extends Object{
 		// Input Shoot
 		if(game.getKeyManager().fire) {
 			if(weaponSlot == 1) {
-				bullets.add(new Bullet(x, y-4, 0, 16, Assets.bullet_01));
+				bullets.add(new Bullet(x, y-4, 0, 16, Assets.bullet_01, "b1"));
 				if((int) power >= 1) {
-					bullets.add(new Bullet(x-8, y-4, 0, 16, Assets.bullet_01));
-					bullets.add(new Bullet(x+8, y-4, 0, 16, Assets.bullet_01));
+					bullets.add(new Bullet(x-8, y-4, 0, 16, Assets.bullet_01, "b1"));
+					bullets.add(new Bullet(x+8, y-4, 0, 16, Assets.bullet_01, "b1"));
 				}
 				if((int) power >= 2) {
-					bullets.add(new Bullet(x-16, y+16, 0, 16, Assets.bullet_01));
-					bullets.add(new Bullet(x+16, y+16, 0, 16, Assets.bullet_01));
+					bullets.add(new Bullet(x-16, y+16, 0, 16, Assets.bullet_01, "b1"));
+					bullets.add(new Bullet(x+16, y+16, 0, 16, Assets.bullet_01, "b1"));
 				}
 			}
 			
 			if(weaponSlot == 2 && !shotDelayed) {
-				bullets.add(new Bullet(x, y-8, 0, 8, Assets.bullet_02));
-				bullets.add(new Bullet(x-8, y-8, -1, 8, Assets.bullet_02));
-				bullets.add(new Bullet(x+8, y-8, 1, 8, Assets.bullet_02));
-				bullets.add(new Bullet(x-8, y+8, -3, 8, Assets.bullet_02));
-				bullets.add(new Bullet(x+8, y+8, 3, 8, Assets.bullet_02));
+				bullets.add(new Bullet(x, y-8, 0, 8, Assets.bullet_02, "b2"));
+				bullets.add(new Bullet(x-8, y-8, -1, 8, Assets.bullet_02, "b2"));
+				bullets.add(new Bullet(x+8, y-8, 1, 8, Assets.bullet_02, "b2"));
+				bullets.add(new Bullet(x-8, y+8, -3, 8, Assets.bullet_02, "b2"));
+				bullets.add(new Bullet(x+8, y+8, 3, 8, Assets.bullet_02, "b2"));
 			}
 			if(!shotDelayed) {
 				delay++;
-				if(delay == 6)
+				if(delay == 6) {
 					shotDelayed = true;
+				}
 			}
 		}
 		

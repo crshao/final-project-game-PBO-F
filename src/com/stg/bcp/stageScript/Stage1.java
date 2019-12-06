@@ -7,16 +7,17 @@ import com.stg.bcp.GameObject.object.Enemy;
 import com.stg.bcp.GameObject.object.Enemy1;
 import com.stg.bcp.GameObject.object.Enemy2;
 import com.stg.bcp.GameObject.object.Enemy3;
+import com.stg.bcp.GameObject.object.Player;
 import com.stg.bcp.display.Display;
 import com.stg.bcp.gfx.Assets;
 
 public class Stage1 extends StageScript{
 	
 	private Random rand = new Random();
-	private int delay, counter, newScore;
+	private int delay, counter;
 	
-	public Stage1(List<Enemy> enemies, List<Bullet> bullets) {
-		super(enemies, bullets);
+	public Stage1(List<Enemy> enemies, List<Bullet> bullets, Player player) {
+		super(enemies, bullets, player);
 		
 		initStage();
 	}

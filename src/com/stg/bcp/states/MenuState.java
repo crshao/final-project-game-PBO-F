@@ -9,12 +9,21 @@ public class MenuState extends State {
 	
 	public MenuState(Game game) {
 		super(game);
+		
+		initState();
+	}
+	
+	private void initState() {
+		
 	}
 	
 	@Override
 	public void tick() {
-		// TODO Auto-generated method stub
-		
+//		delay++;
+//		if(delay == 120) {
+//			delay = 0;
+//			State.getState().setState(gameState);
+//		}
 	}
 
 	@Override

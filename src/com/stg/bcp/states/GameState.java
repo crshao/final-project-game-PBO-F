@@ -16,19 +16,17 @@ import com.stg.bcp.stageScript.StageScript;
 public class GameState extends State {
 	private Player player;
 	private Background mainBackground, sideBackground;
-	private StageScript stageScript = new Stage1(new ArrayList<>(), new ArrayList<>());
+	private StageScript stageScript;
 	private StatusScreen status;
-	public static Integer currentLevel, currentScore;
 	
 	public GameState(Game game) {
 		super(game);
 		initState();
-		currentLevel = 1;
-		currentScore = 0;
 	}
 	
 	private void initState() {
 		player = new Player(game, 256, 512);
+		stageScript = new Stage1(new ArrayList<>(), new ArrayList<>(), player);
 		mainBackground = new MovingBackground(-256, -864, 4, Assets.level);
 		sideBackground = new StaticBackground(512, 0, Assets.background);
 		status = new StatusScreen(player);
@@ -68,19 +66,6 @@ public class GameState extends State {
 			bullet.render(g);
 		sideBackground.render(g);
 		status.render(g);
-		
-//		g.fillRect(0, 0, game.getWidth()/2, game.getHeight());
-//		g.drawImage(Assets.background, 512, 0, null);
-//		g.setFont(new Font("Consolas", Font.PLAIN, 30));
-//		g.setColor(Color.WHITE);
-//		g.drawString("Level " + currentLevel.toString(), 520, 50);
-//		g.drawString("HP:", 520, 100);
-//		g.drawString("PowerUp:", 520, 180);
-//		g.drawString("*simbol-simbol", 520, 210);
-//		g.drawString("Score:\n" + currentScore.toString(), 520, 300);
-//		healthBarPanel = new JPanel();
-//		healthBarPanel.setBounds(100, 15, 200, 30);
-//		healthBarPanel.setBackground(Color.GREEN);
 	}
 	
 }
