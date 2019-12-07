@@ -10,24 +10,24 @@ public abstract class Object extends GameObject{
 	protected BufferedImage image;
 	protected boolean exist;
 	
-	public Object(float x, float y) {
-		super(x, y);
+	public Object(int x, int y, int width, int height,
+			BufferedImage image) {
+		super(x, y, width, height);
+		this.image = image;
 		health = 10;
 	}
 	
-	public Object(float x, float y, int moveX, int moveY, BufferedImage image) {
-		super(x, y, 8, 12);
-		this.moveX = moveX;
-		this.moveY = moveY;
+	public Object(int x, int y, int width, int height,
+			BufferedImage image, int health) {
+		super(x, y, width, height);
 		this.image = image;
+		this.health = health;
 		exist = true;
-		health = 1;
 	}
 	
-	public Object(float x, float y, int moveX, int moveY, BufferedImage image, int health) {
-		super(x, y);
-		this.moveX = moveX;
-		this.moveY = moveY;
+	public Object(int x, int y, int width, int height,
+			int xBound, int yBound, BufferedImage image, int health) {
+		super(x, y, width, height, xBound, yBound);
 		this.image = image;
 		this.health = health;
 		exist = true;
@@ -49,17 +49,9 @@ public abstract class Object extends GameObject{
 		this.exist = exist;
 	}
 	
-	protected void moveHorizontal() {
-		x += moveX;
-	}
-	
-	protected void moveVertical() {
-		y -= moveY;
-	}
-	
 	protected void move() {
-		moveHorizontal();
-		moveVertical();
+		x += moveX;
+		y -= moveY;
 	}
 	
 	public void setMoveX(int moveX) {
@@ -87,6 +79,6 @@ public abstract class Object extends GameObject{
 	
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(image, (int) x, (int) y, null);
+		g.drawImage(image, x, y, width, height, null);
 	}
 }

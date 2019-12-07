@@ -6,7 +6,6 @@ import java.util.List;
 import com.stg.bcp.GameObject.object.Enemy;
 import com.stg.bcp.GameObject.object.Enemy1;
 import com.stg.bcp.GameObject.object.Enemy2;
-import com.stg.bcp.GameObject.object.Enemy3;
 import com.stg.bcp.GameObject.object.Bullet;
 import com.stg.bcp.GameObject.object.Object;
 import com.stg.bcp.GameObject.object.Player;
@@ -35,9 +34,9 @@ public abstract class StageScript{
 					enemy.damageHealth(1000);
 				else {
 					if(((Bullet)collision).getTag() == "b1")
-						enemy.damageHealth(1);
+						enemy.damageHealth(2);
 					else if(((Bullet)collision).getTag() == "b2")
-						enemy.damageHealth(6);
+						enemy.damageHealth(1);
 				}
 					
 			}	
@@ -75,11 +74,9 @@ public abstract class StageScript{
 	
 	protected void enemyFire(Enemy enemy) {
 		if(enemy instanceof Enemy1)
-			bullets.add(new Bullet(enemy.getX(), enemy.getY(), 0, -2, Assets.bullet_02, null));
+			bullets.add(new Bullet(enemy.getX(), enemy.getY(), Assets.bullet_02, 0, -2, null));
 		if(enemy instanceof Enemy2)
-			bullets.add(new Bullet(enemy.getX(), enemy.getY(), 0, -2, Assets.bullet_03, null));
-		if(enemy instanceof Enemy3)
-			bullets.add(new Bullet(enemy.getX(), enemy.getY(), 0, -3, Assets.beam1, null));
+			bullets.add(new Bullet(enemy.getX(), enemy.getY(), Assets.bullet_03, 0, -2, null));
 		enemy.setFire(false);
 	}
 	

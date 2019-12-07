@@ -25,7 +25,7 @@ public class GameState extends State {
 	}
 	
 	private void initState() {
-		player = new Player(game, 256, 512);
+		player = new Player(game, 256, 512, 32, 32, Assets.player);
 		stageScript = new Stage1(new ArrayList<>(), new ArrayList<>(), player);
 		mainBackground = new MovingBackground(-256, -864, 4, Assets.level);
 		sideBackground = new StaticBackground(512, 0, Assets.background);

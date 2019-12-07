@@ -6,7 +6,6 @@ import com.stg.bcp.GameObject.object.Bullet;
 import com.stg.bcp.GameObject.object.Enemy;
 import com.stg.bcp.GameObject.object.Enemy1;
 import com.stg.bcp.GameObject.object.Enemy2;
-import com.stg.bcp.GameObject.object.Enemy3;
 import com.stg.bcp.GameObject.object.Player;
 import com.stg.bcp.display.Display;
 import com.stg.bcp.gfx.Assets;
@@ -38,8 +37,6 @@ public class Stage1 extends StageScript{
 				enemies.add(new Enemy1(rand.nextInt(256) + 128, -48, Assets.enemy1));
 			for(int i=0; i<counter/2; i++)
 				enemies.add(new Enemy2(rand.nextInt(256) + 128, -48, Assets.enemy2));
-			for(int i=0; i<counter/3; i++)
-				enemies.add(new Enemy3(rand.nextInt(256) + 50, -48, Assets.enemy3));
 		}
 	}
 	

@@ -1,6 +1,6 @@
 package com.stg.bcp.GameObject.object;
 
-import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 import com.stg.bcp.Game;
@@ -21,8 +21,9 @@ public class Player extends Object{
 		borderRight=496;
 	private List<Bullet> bullets;
 	
-	public Player(Game game, float x, float y) {
-		super(x, y);
+	public Player(Game game, int x, int y, int width, int height,
+			BufferedImage image) {
+		super(x, y, width, height, image);
 		this.game = game;
 		
 		initPlayer();
@@ -53,39 +54,29 @@ public class Player extends Object{
 	@Override
 	public void tick() {
 		// Input Movement
-		if((game.getKeyManager().up || game.getKeyManager().up2)
-				&& (int) y > borderUp)
-			y -= 3;
-		if((game.getKeyManager().down || game.getKeyManager().down2)
-				&& (int) y < borderDown)
-			y += 3;
-		if((game.getKeyManager().left || game.getKeyManager().left2)
-				&& (int) x > borderLeft)
-			x -= 3;
-		if((game.getKeyManager().right || game.getKeyManager().right2)
-				&& (int) x < borderRight)
-			x += 3;
+		getMovement();
+		move();
 		
 		// Input Shoot
 		if(game.getKeyManager().fire) {
 			if(weaponSlot == 1) {
-				bullets.add(new Bullet(x, y-4, 0, 16, Assets.bullet_01, "b1"));
+				bullets.add(new Bullet(x+8, y-4, Assets.bullet_01, 0, 16, "b1"));
 				if((int) power >= 1) {
-					bullets.add(new Bullet(x-8, y-4, 0, 16, Assets.bullet_01, "b1"));
-					bullets.add(new Bullet(x+8, y-4, 0, 16, Assets.bullet_01, "b1"));
+					bullets.add(new Bullet(x, y-2, Assets.bullet_01, 0, 16, "b1"));
+					bullets.add(new Bullet(x+16, y-2, Assets.bullet_01, 0, 16, "b1"));
 				}
 				if((int) power >= 2) {
-					bullets.add(new Bullet(x-16, y+16, 0, 16, Assets.bullet_01, "b1"));
-					bullets.add(new Bullet(x+16, y+16, 0, 16, Assets.bullet_01, "b1"));
+					bullets.add(new Bullet(x-12, y, Assets.bullet_01, 0, 16, "b1"));
+					bullets.add(new Bullet(x+28, y, Assets.bullet_01, 0, 16, "b1"));
 				}
 			}
 			
 			if(weaponSlot == 2 && !shotDelayed) {
-				bullets.add(new Bullet(x, y-8, 0, 8, Assets.bullet_02, "b2"));
-				bullets.add(new Bullet(x-8, y-8, -1, 8, Assets.bullet_02, "b2"));
-				bullets.add(new Bullet(x+8, y-8, 1, 8, Assets.bullet_02, "b2"));
-				bullets.add(new Bullet(x-8, y+8, -3, 8, Assets.bullet_02, "b2"));
-				bullets.add(new Bullet(x+8, y+8, 3, 8, Assets.bullet_02, "b2"));
+				bullets.add(new Bullet(x+8, y-8, 8, 8, Assets.bullet_02, 0, 8, "b2"));
+				bullets.add(new Bullet(x, y-8, 8, 8, Assets.bullet_02, -1, 8, "b2"));
+				bullets.add(new Bullet(x+16, y-8, 8, 8, Assets.bullet_02, 1, 8, "b2"));
+				bullets.add(new Bullet(x-4, y+8, 8, 8, Assets.bullet_02, -2, 8, "b2"));
+				bullets.add(new Bullet(x+20, y+8, 8, 8, Assets.bullet_02, 2, 8, "b2"));
 			}
 			if(!shotDelayed) {
 				delay++;
@@ -113,10 +104,21 @@ public class Player extends Object{
 				shotDelayed = false;
 		}
 	}
-
-	@Override
-	public void render(Graphics g) {
-		g.drawImage(Assets.player, (int) x, (int) y, null);
-	}
 	
+	private void getMovement() {
+		moveX = 0;
+		moveY = 0;
+		if((game.getKeyManager().up || game.getKeyManager().up2)
+				&& (int) y > borderUp)
+			moveY += 3;
+		if((game.getKeyManager().down || game.getKeyManager().down2)
+				&& (int) y < borderDown)
+			moveY -= 3;
+		if((game.getKeyManager().left || game.getKeyManager().left2)
+				&& (int) x > borderLeft)
+			moveX -= 3;
+		if((game.getKeyManager().right || game.getKeyManager().right2)
+				&& (int) x < borderRight)
+			moveX += 3;
+	}
 }

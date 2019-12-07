@@ -4,10 +4,10 @@ import java.awt.image.BufferedImage;
 
 public class Enemy1 extends Enemy{
 	
-	private boolean behavior1;
+	private boolean behavior;
 	
-	public Enemy1(float x, float y, BufferedImage image) {
-		super(x, y, 0, 2, image, 100);
+	public Enemy1(int x, int y, BufferedImage image) {
+		super(x, y, 32, 32, 20, 20, image, 300);
 		
 		initEnemy();
 	}
@@ -15,24 +15,26 @@ public class Enemy1 extends Enemy{
 	private void initEnemy() {
 		actTime = rand.nextInt(60)+30;
 		fire = false;
-		behavior1 = true;
+		behavior = true;
+		setSpeed(0, 1);
 	}
 	
 	@Override
 	public void tick() {
-		if(behavior1) {
-			moveVertical();
+		if(behavior) {
+			move();
 			actTime--;
 			if(actTime == 0) {
 				fire = true;
+				setSpeed(-2, 4, 0, 0);
 				actTime = 90;
 				isMove = false;
-				behavior1 = false;
+				behavior = false;
 			}
 		}
 		else {
 			if(isMove) {
-				moveHorizontal();
+				move();
 				if((int) x < 0 || (int) x > 512)
 					moveX *= -1;
 				actTime--;
@@ -46,7 +48,7 @@ public class Enemy1 extends Enemy{
 				actTime--;
 				if(actTime == 0) {
 					actTime = 30;
-					moveX = rand.nextInt(4) - 2;
+					setSpeed(-2, 4, 0, 0);
 					if(moveX == 0)
 						moveX = 1;
 					isMove = true;

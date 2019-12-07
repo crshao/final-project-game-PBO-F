@@ -6,8 +6,20 @@ public class Bullet extends Object{
 	
 	private String tag;
 	
-	public Bullet(float x, float y, int moveX, int moveY, BufferedImage image, String tag) {
-		super(x, y, moveX, moveY, image);
+	public Bullet(int x, int y, BufferedImage image,
+			int moveX, int moveY, String tag) {
+		super(x, y, 16, 16, 8, 12, image, 1);
+		this.moveX = moveX;
+		this.moveY = moveY;
+		this.tag = tag;
+	}
+	
+	public Bullet(int x, int y, int xBound, int yBound,
+			BufferedImage image,
+			int moveX, int moveY, String tag) {
+		super(x, y, 16, 16, xBound, yBound, image, 1);
+		this.moveX = moveX;
+		this.moveY = moveY;
 		this.tag = tag;
 	}
 	
