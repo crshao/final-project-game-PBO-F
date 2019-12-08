@@ -11,8 +11,7 @@ import com.stg.bcp.GameObject.object.Object;
 import com.stg.bcp.GameObject.object.Player;
 import com.stg.bcp.gfx.Assets;
 
-public abstract class StageScript{
-	
+public abstract class StageScript implements instantiateObject{
 	protected List<Enemy> enemies;
 	protected List<Bullet> bullets;
 	protected Player player;
@@ -31,21 +30,19 @@ public abstract class StageScript{
 			if(r1.intersects(r2)) {
 				collision.damageHealth(1);
 				if(collision instanceof Player)
-					enemy.damageHealth(1000);
+					enemy.damageHealth(3000);
 				else {
 					if(((Bullet)collision).getTag() == "b1")
 						enemy.damageHealth(2);
-					else if(((Bullet)collision).getTag() == "b2")
+					if(((Bullet)collision).getTag() == "b2")
 						enemy.damageHealth(1);
 				}
-					
 			}	
 		}
 		
 		if(collision instanceof Player) {
 			for(Bullet bullet: bullets) {
 				Rectangle r2 = bullet.getBounds();
-				
 				if(r1.intersects(r2)) {
 					collision.damageHealth(1);
 					bullet.damageHealth(1);
@@ -55,16 +52,26 @@ public abstract class StageScript{
 	}
 	
 	protected void updateEnemy(List<Enemy> enemies) {
+		for(Enemy enemy: enemies) {
+			enemy.tick();
+			if(enemy.isFire())
+				enemyFire(enemy);
+		}
 		for(int i=0; i<enemies.size(); i++) {
 			Enemy enemy = enemies.get(i);
 			if(!enemy.isExist()){
-				player.addScore(5);
+				if(enemy instanceof Enemy1)
+					player.addScore(5);
+				if(enemy instanceof Enemy2)
+					player.addScore(20);
 				enemies.remove(i);
 			}
 		}
 	}
 	
 	protected void updateBullet(List<Bullet> bullets) {
+		for(Bullet bullet: bullets)
+			bullet.tick();
 		for(int i=0; i< bullets.size(); i++) {
 			Bullet bullet = bullets.get(i);
 			if (!bullet.isExist())
@@ -72,21 +79,29 @@ public abstract class StageScript{
 		}
 	}
 	
+	protected void updatePlayer() {
+		player.tick();
+		checkCollision(player);
+		for(Bullet bullet: player.getBullets()) {
+			bullet.tick();
+			checkCollision(bullet);
+		}
+		for(int i=0; i<player.getBullets().size(); i++) {
+			Bullet bullet = player.getBullets().get(i);
+			if(!bullet.isExist())
+				player.getBullets().remove(i);
+		}
+	}
+	
 	protected void enemyFire(Enemy enemy) {
 		if(enemy instanceof Enemy1)
-			bullets.add(new Bullet(enemy.getX(), enemy.getY(), Assets.bullet_02, 0, -2, null));
+			bullets.add(new Bullet(enemy.getX()+8, enemy.getY()+16, Assets.bullet_02, 0, -2, null));
 		if(enemy instanceof Enemy2)
-			bullets.add(new Bullet(enemy.getX(), enemy.getY(), Assets.bullet_03, 0, -2, null));
+			bullets.add(new Bullet(enemy.getX()+8, enemy.getY()+16, Assets.bullet_03, 0, -2, null));
 		enemy.setFire(false);
 	}
 	
 	public abstract void tick(); 
 	
-	public void render(Graphics g) {
-		for(Enemy enemy: enemies)
-			enemy.render(g);
-		
-		for(Bullet bullet: bullets)
-			bullet.render(g);
-	}
+	public abstract void render(Graphics g);
 }

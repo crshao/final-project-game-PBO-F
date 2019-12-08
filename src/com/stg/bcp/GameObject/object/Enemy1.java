@@ -7,7 +7,7 @@ public class Enemy1 extends Enemy{
 	private boolean behavior;
 	
 	public Enemy1(int x, int y, BufferedImage image) {
-		super(x, y, 32, 32, 20, 20, image, 300);
+		super(x, y, 32, 32, 20, 20, image, 200);
 		
 		initEnemy();
 	}

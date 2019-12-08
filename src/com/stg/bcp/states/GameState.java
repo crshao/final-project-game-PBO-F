@@ -10,14 +10,13 @@ import com.stg.bcp.background.MovingBackground;
 import com.stg.bcp.background.StaticBackground;
 import com.stg.bcp.background.StatusScreen;
 import com.stg.bcp.gfx.Assets;
+import com.stg.bcp.stageScript.GameOver;
 import com.stg.bcp.stageScript.Stage1;
 import com.stg.bcp.stageScript.StageScript;
 
 public class GameState extends State {
 	private Player player;
-	private Background mainBackground, sideBackground;
 	private StageScript stageScript;
-	private StatusScreen status;
 	
 	public GameState(Game game) {
 		super(game);
@@ -27,45 +26,22 @@ public class GameState extends State {
 	private void initState() {
 		player = new Player(game, 256, 512, 32, 32, Assets.player);
 		stageScript = new Stage1(new ArrayList<>(), new ArrayList<>(), player);
-		mainBackground = new MovingBackground(-256, -864, 4, Assets.level);
-		sideBackground = new StaticBackground(512, 0, Assets.background);
-		status = new StatusScreen(player);
+	}
+	
+	private void updateScreen() {
+		if(player.getHealth() == 0)
+			stageScript = new GameOver();
 	}
 	
 	@Override
 	public void tick() {
-		player.tick();
-		mainBackground.tick();
 		stageScript.tick();
-		
-		stageScript.checkCollision(player);
-		
-		//Update Player's Bullets
-		for(Bullet bullet: player.getBullets()) {
-			bullet.tick();
-			stageScript.checkCollision(bullet);
-		}
-		for(int i=0; i<player.getBullets().size(); i++) {
-			Bullet bullet = player.getBullets().get(i);
-			if(!bullet.isExist()) {
-				player.getBullets().remove(i);
-			}
-		}
-		
-		status.tick();
+		updateScreen();
 	}
 
 	@Override
 	public void render(Graphics g) {
-		mainBackground.render(g);
-		player.render(g);
 		stageScript.render(g);
-
-		//Render player's bullets
-		for(Bullet bullet: player.getBullets())
-			bullet.render(g);
-		sideBackground.render(g);
-		status.render(g);
 	}
 	
 }

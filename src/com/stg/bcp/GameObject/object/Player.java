@@ -1,5 +1,6 @@
 package com.stg.bcp.GameObject.object;
 
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
@@ -120,5 +121,12 @@ public class Player extends Object{
 		if((game.getKeyManager().right || game.getKeyManager().right2)
 				&& (int) x < borderRight)
 			moveX += 3;
+	}
+	
+	@Override
+	public void render(Graphics g) {
+		super.render(g);
+		for(Bullet bullet: bullets)
+			bullet.render(g);
 	}
 }

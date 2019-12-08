@@ -6,7 +6,6 @@ import com.stg.bcp.display.Display;
 import com.stg.bcp.gfx.Assets;
 import com.stg.bcp.input.KeyManager;
 import com.stg.bcp.states.GameState;
-import com.stg.bcp.states.MenuState;
 import com.stg.bcp.states.State;
 
 import javax.swing.*;
@@ -28,7 +27,6 @@ public class Game implements Runnable{
 	
 	//States
 	private State gameState;
-	private State menuState;
 	
 	//Input
 	private KeyManager keyManager;
@@ -50,7 +48,6 @@ public class Game implements Runnable{
 		Assets.init();
 
 		gameState = new GameState(this);
-		menuState = new MenuState(this);
 		State.setState(gameState);
 	}
 	
@@ -96,13 +93,6 @@ public class Game implements Runnable{
 			delta += (now - lastTime) / timePerTick;
 			timer += now - lastTime;
 			lastTime = now;
-			
-			
-			if(State.getState().isToMenu()) {
-				State.setState(menuState);
-				State.getState().setToMenu(false);
-				continue;
-			}
 			
 			if(delta >= 1) {
 				tick();
