@@ -35,7 +35,7 @@ public abstract class StageScript implements instantiateObject{
 					if(((Bullet)collision).getTag() == "b1")
 						enemy.damageHealth(2);
 					if(((Bullet)collision).getTag() == "b2")
-						enemy.damageHealth(1);
+						enemy.damageHealth(12);
 				}
 			}	
 		}

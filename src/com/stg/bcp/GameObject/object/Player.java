@@ -12,14 +12,14 @@ import com.stg.bcp.gfx.Assets;
 public class Player extends Object{
 	
 	private Game game;
-	private int delay, power, weaponSlot, score;
+	private int delay, power, fireball, weaponSlot, score;
 	private boolean buttonPressed, shotDelayed;
 	private static final int
 		borderUp=0,
 		borderDown=560,
 		borderLeft=0,
 		borderRight=496,
-		maxPower = 200;
+		maxPower = 100, maxFireball = 180;
 	private List<Bullet> bullets;
 	
 	public Player(Game game, int x, int y, int width, int height,
@@ -32,24 +32,23 @@ public class Player extends Object{
 	
 	private void initPlayer() {
 		bullets = new ArrayList<>();
-		delay = 0;
-		weaponSlot = 1;
-		power = 0;
-		buttonPressed = false;
-		shotDelayed = false;
 		score = 0;
+		weaponSlot = 1;
+		delay = 0;
+		power = 0; fireball = maxFireball;
+		buttonPressed = false; shotDelayed = false;
 	}
 	
 	public List<Bullet> getBullets(){
 		return bullets;
 	}
 	
-	public void addScore(int score) {
-		this.score += score;
-	}
-	
 	public int getScore() {
 		return score;
+	}
+	
+	public void addScore(int score) {
+		this.score += score;
 	}
 	
 	public int getPower() {
@@ -57,7 +56,12 @@ public class Player extends Object{
 	}
 	
 	public void addPower(int power) {
-		this.power += power;
+		if(this.power < maxPower)
+			this.power += power;
+	}
+	
+	public int getFireball() {
+		return fireball;
 	}
 
 	@Override
@@ -65,7 +69,8 @@ public class Player extends Object{
 		// Input Movement
 		getMovement();
 		move();
-		
+		if((!game.getKeyManager().fire || weaponSlot == 1) && fireball < maxFireball)
+			fireball++;
 		// Input Shoot
 		if(game.getKeyManager().fire) {
 			if(weaponSlot == 1) {
@@ -80,7 +85,8 @@ public class Player extends Object{
 				}
 			}
 			
-			if(weaponSlot == 2 && !shotDelayed) {
+			if(weaponSlot == 2 && !shotDelayed && fireball > 2) {
+				fireball -= 6;
 				bullets.add(new Bullet(x+8, y-8, 8, 8, Assets.bullet_02, 0, 8, "b2"));
 				bullets.add(new Bullet(x, y-8, 8, 8, Assets.bullet_02, -1, 8, "b2"));
 				bullets.add(new Bullet(x+16, y-8, 8, 8, Assets.bullet_02, 1, 8, "b2"));

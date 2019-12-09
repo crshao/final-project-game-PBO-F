@@ -8,7 +8,7 @@ import com.stg.bcp.GameObject.object.Player;
 
 public class StatusScreen {
 	
-	private int health, score, power;
+	private int health, score, power, fireball;
 	private Player player;
 	
 	public StatusScreen(Player player) {
@@ -19,6 +19,7 @@ public class StatusScreen {
 		health = player.getHealth();
 		score = player.getScore();
 		power = player.getPower();
+		fireball = player.getFireball();
 	}
 	
 	public void render(Graphics g) {
@@ -29,16 +30,21 @@ public class StatusScreen {
 		g.drawString("Score: " + score, 520, 32);
 		g.drawString("Health", 520, 128);
 		g.drawString("Power", 520, 224);
+		g.drawString("Fireball", 520, 320);
 		
-		//Draw Health
+		//Draw Outer Border
 		g.drawRect(520, 132, 102, 28);
+		g.drawRect(520, 228, 202, 28);
+		g.drawRect(520, 324, 182, 28);
+		
+		
+		//Draw Border's Fill
 		g.setColor(Color.GREEN);
 		g.fillRect(521, 133, health * 10, 26);
-		
-		//Draw Power
-		g.drawRect(520, 228, 202, 28);
+		g.setColor(Color.BLUE);
+		g.fillRect(521, 229, power * 2, 26);
 		g.setColor(Color.RED);
-		g.fillRect(521, 229, power, 26);
+		g.fillRect(521, 325, fireball, 26);
 	}
 	
 }
