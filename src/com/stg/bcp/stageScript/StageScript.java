@@ -64,6 +64,7 @@ public abstract class StageScript implements instantiateObject{
 					player.addScore(5);
 				if(enemy instanceof Enemy2)
 					player.addScore(20);
+				player.addPower(1);
 				enemies.remove(i);
 			}
 		}
@@ -74,8 +75,8 @@ public abstract class StageScript implements instantiateObject{
 			bullet.tick();
 		for(int i=0; i< bullets.size(); i++) {
 			Bullet bullet = bullets.get(i);
-			if (!bullet.isExist())
-				bullets.remove(i);
+				if (!bullet.isExist())
+					bullets.remove(i);
 		}
 	}
 	

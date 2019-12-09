@@ -2,18 +2,16 @@ package com.stg.bcp.gfx;
 
 import java.awt.image.BufferedImage;
 import com.stg.bcp.gfx.ImageLoader;
-import com.stg.bcp.gfx.SpriteSheet;
 
 public class Assets {
-
-	private static final int width = 16, height = 16;
 	
 	public static BufferedImage
 		background, level,
 		bullet_01, bullet_02,bullet_03,
 		player,
 		enemy1, enemy2,enemy3,
-		beam1;
+		beam1,
+		powerUp;
 	
 	public static void init() {
 		background = ImageLoader.loadImage("/textures/background.png");
@@ -25,9 +23,8 @@ public class Assets {
 		enemy2 = ImageLoader.loadImage("/textures/enemy2.png");
 		enemy3 = ImageLoader.loadImage("/textures/enemy3.png");
 		beam1 = ImageLoader.loadImage("/textures/beam1.png");
-		
-		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/player.png"));
-		player = sheet.crop(0, 0, width, height);
+		player = ImageLoader.loadImage("/textures/player.png");
+		powerUp = ImageLoader.loadImage("/textures/powerUp.png");
 	}
 	
 }

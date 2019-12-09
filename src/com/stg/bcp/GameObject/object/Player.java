@@ -12,14 +12,14 @@ import com.stg.bcp.gfx.Assets;
 public class Player extends Object{
 	
 	private Game game;
-	private int delay, weaponSlot, score;
-	private float power;
+	private int delay, power, weaponSlot, score;
 	private boolean buttonPressed, shotDelayed;
 	private static final int
 		borderUp=0,
 		borderDown=560,
 		borderLeft=0,
-		borderRight=496;
+		borderRight=496,
+		maxPower = 200;
 	private List<Bullet> bullets;
 	
 	public Player(Game game, int x, int y, int width, int height,
@@ -34,7 +34,7 @@ public class Player extends Object{
 		bullets = new ArrayList<>();
 		delay = 0;
 		weaponSlot = 1;
-		power = (float) 3.9;
+		power = 0;
 		buttonPressed = false;
 		shotDelayed = false;
 		score = 0;
@@ -51,6 +51,14 @@ public class Player extends Object{
 	public int getScore() {
 		return score;
 	}
+	
+	public int getPower() {
+		return power;
+	}
+	
+	public void addPower(int power) {
+		this.power += power;
+	}
 
 	@Override
 	public void tick() {
@@ -62,11 +70,11 @@ public class Player extends Object{
 		if(game.getKeyManager().fire) {
 			if(weaponSlot == 1) {
 				bullets.add(new Bullet(x+8, y-4, Assets.bullet_01, 0, 16, "b1"));
-				if((int) power >= 1) {
+				if(power >= 50) {
 					bullets.add(new Bullet(x, y-2, Assets.bullet_01, 0, 16, "b1"));
 					bullets.add(new Bullet(x+16, y-2, Assets.bullet_01, 0, 16, "b1"));
 				}
-				if((int) power >= 2) {
+				if(power >= 100) {
 					bullets.add(new Bullet(x-12, y, Assets.bullet_01, 0, 16, "b1"));
 					bullets.add(new Bullet(x+28, y, Assets.bullet_01, 0, 16, "b1"));
 				}

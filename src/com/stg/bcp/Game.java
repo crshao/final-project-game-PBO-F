@@ -8,16 +8,10 @@ import com.stg.bcp.input.KeyManager;
 import com.stg.bcp.states.GameState;
 import com.stg.bcp.states.State;
 
-import javax.swing.*;
-
 public class Game implements Runnable{
 	private Display display;
 	public int width, height;
 	public String title;
-	public Container con;
-
-	//Interface menu
-	public JPanel healthBarPanel;
 	
 	private boolean running = false;
 	private Thread thread;
@@ -36,10 +30,7 @@ public class Game implements Runnable{
 		this.height = height;
 		this.title = title;
 		keyManager = new KeyManager();
-
-		healthBarPanel = new JPanel();
-		healthBarPanel.setBounds(250, 250, 300, 30);
-		healthBarPanel.setBackground(Color.GREEN);
+		
 	}
 	
 	private void init() {
@@ -123,6 +114,10 @@ public class Game implements Runnable{
 		return keyManager;
 	}
 	
+	public void setRunning(boolean running) {
+		this.running = running;
+	}
+
 	public synchronized void start() {
 		if(running)
 			return;

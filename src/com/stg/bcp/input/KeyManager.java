@@ -11,7 +11,7 @@ public class KeyManager implements KeyListener {
 		down, down2,
 		left, left2,
 		right, right2,
-		fire, change;
+		fire, change, enter;
 	
 	public KeyManager() {
 		keys = new boolean[256];
@@ -29,6 +29,7 @@ public class KeyManager implements KeyListener {
 		
 		fire = keys[KeyEvent.VK_CONTROL];
 		change = keys[KeyEvent.VK_E];
+		enter = keys[KeyEvent.VK_ENTER];
 	}
 	
 	@Override
