@@ -98,7 +98,6 @@ public class Game implements Runnable{
 				timer = 0;
 			}
 		}
-		
 		stop();
 	}
 	
@@ -130,6 +129,8 @@ public class Game implements Runnable{
 		if(!running)
 			return;
 		running = false;
+		display.getFrame().setVisible(false);
+		
 		try {
 			thread.join();
 		} catch(InterruptedException e) {
