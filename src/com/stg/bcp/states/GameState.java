@@ -1,7 +1,6 @@
 package com.stg.bcp.states;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import com.stg.bcp.Game;
 import com.stg.bcp.GameObject.Cursor_GameOver;
@@ -17,24 +16,19 @@ public class GameState extends State {
 	private Player player;
 	private StageScript stageScript;
 	private int counter, timer;
+	private boolean buttonPressed;
 	
 	public GameState(Game game) {
 		super(game);
-		mainMenu();
-	}
-	private void mainMenu() {
-		stageScript = new MainMenu(new Cursor_MainMenu(game, 340,310, Assets.player));
-		
+		buttonPressed = false;
+		startMainMenu();
 	}
 	
-	private void updateMainMenu() {
-		if(((MainMenu)stageScript).getCursor().getTag() == "Play")
-			initState();
-		else if(((MainMenu)stageScript).getCursor().getTag() == "Quit")
-			game.setRunning(false);
+	private void startMainMenu() {
+		stageScript = new MainMenu(new Cursor_MainMenu(game, 340, 310, Assets.player));
 	}
 	
-	private void initState() {
+	private void startStage1() {
 		player = new Player(game, 256, 512, 32, 32, Assets.player);
 		stageScript = new Stage1(new ArrayList<>(), new ArrayList<>(), player);
 		counter = 0;
@@ -42,16 +36,23 @@ public class GameState extends State {
 		((Stage1) stageScript).getStatusScreen().setTimer(timer);
 	}
 	
+	private void updateMainMenu() {
+		if(((MainMenu)stageScript).getCursor().getTag() == "Play")
+			startStage1();
+		else if(((MainMenu)stageScript).getCursor().getTag() == "Quit")
+			game.setRunning(false);
+	}
+	
 	private void updateStage1() {
 		if(player.getHealth() == 0 || timer == 0)
-			stageScript = new GameOver(new Cursor_GameOver(game, 360, 320, Assets.player));
+			stageScript = new GameOver(new Cursor_GameOver(game, 360, 320, Assets.player), stageScript.getPlayer().getScore());
 	}
 	
 	private void updateGameOver() {
 		if(((GameOver)stageScript).getCursor().getTag() == "Retry")
-			initState();
+			startStage1();
 		else if(((GameOver)stageScript).getCursor().getTag() == "Main Menu")
-			mainMenu(); 
+			startMainMenu();
 		else if(((GameOver)stageScript).getCursor().getTag() == "Quit")
 			game.setRunning(false);
 	}
@@ -68,10 +69,13 @@ public class GameState extends State {
 		
 		
 		if(stageScript instanceof MainMenu) {
-			if(game.getKeyManager().enter)
+			if(game.getKeyManager().enter && !buttonPressed) {
 				updateMainMenu();
+				buttonPressed = true;
+			}
+			if(!game.getKeyManager().enter)
+				buttonPressed = false;
 		}
-			;
 		if(stageScript instanceof Stage1) {
 			counter++;
 			if(counter == 60)
@@ -79,8 +83,12 @@ public class GameState extends State {
 			updateStage1();
 		}
 		if(stageScript instanceof GameOver) {
-			if(game.getKeyManager().enter)
+			if(game.getKeyManager().enter) {
 				updateGameOver();
+				buttonPressed = true;
+			}
+			if(!game.getKeyManager().enter)
+				buttonPressed = false;
 		}
 	}
 

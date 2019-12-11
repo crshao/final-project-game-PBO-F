@@ -102,6 +102,10 @@ public abstract class StageScript implements instantiateObject{
 		enemy.setFire(false);
 	}
 	
+	public Player getPlayer() {
+		return player;
+	}
+
 	public abstract void tick(); 
 	
 	public abstract void render(Graphics g);

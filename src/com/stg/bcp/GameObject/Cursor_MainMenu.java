@@ -5,10 +5,9 @@ import com.stg.bcp.Game;
 
 public class Cursor_MainMenu extends Cursor{
 	
-	//Atur Batas Atas dan Bawah
 	private static final int
-	upperLimitY = 300,
-	lowerLimitY = 400;
+	upperLimitY = 310,
+	lowerLimitY = 350;
 	private boolean buttonPressed;
 	
 	public Cursor_MainMenu(Game game, int x, int y, BufferedImage image) {

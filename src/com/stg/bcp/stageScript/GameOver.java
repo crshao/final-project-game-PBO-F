@@ -8,11 +8,13 @@ import com.stg.bcp.GameObject.Cursor;
 public class GameOver extends StageScript{
 	
 	private Cursor cursor;
+	private int score;
 	
 	
-	public GameOver(Cursor cursor) {
+	public GameOver(Cursor cursor, int score) {
 		super(null, null, null);
 		this.cursor = cursor;
+		this.score = score;
 	}
 	
 	public Cursor getCursor() {
@@ -32,9 +34,11 @@ public class GameOver extends StageScript{
 		g.fillRect(0, 0, 768, 576);
 		g.setColor(Color.WHITE);
 		g.drawString("GAME OVER", 295, 240);
+		
 		Font font2 = new Font("arial", Font.BOLD,20);
 		g.setFont(font2);
-		g.drawString("Score : ", 310, 290);
+		g.drawString("Score : " + score, 310, 290);
+		
 		Font font3 = new Font("arial", Font.BOLD,15);
 		g.setFont(font3);
 		g.drawString("Retry", 384, 332);

@@ -10,8 +10,7 @@ import com.stg.bcp.gfx.Assets;
 
 public class MainMenu extends StageScript{
 	
-	
-	StaticBackground x = new StaticBackground(100, 200, Assets.mainmenu);
+	private Background background = new StaticBackground(0, 0, Assets.mainmenu);
 	private Cursor cursor;
 	
 	
@@ -32,7 +31,7 @@ public class MainMenu extends StageScript{
 	
 	@Override
 	public void render(Graphics g) {
-		
+		background.render(g);
 		Font font = new Font("arial", Font.BOLD,50);
 		g.setFont(font);
 		g.setColor(Color.WHITE);
