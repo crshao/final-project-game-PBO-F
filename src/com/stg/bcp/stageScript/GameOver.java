@@ -37,13 +37,13 @@ public class GameOver extends StageScript{
 		
 		Font font2 = new Font("arial", Font.BOLD,20);
 		g.setFont(font2);
-		g.drawString("Score : " + score, 310, 290);
+		g.drawString("Score : " + score, 340, 290);
 		
 		Font font3 = new Font("arial", Font.BOLD,15);
 		g.setFont(font3);
-		g.drawString("Retry", 384, 332);
-		g.drawString("Main Menu", 384, 372);
-		g.drawString("Quit", 384, 412);
+		g.drawString("Retry", 365, 332);
+		g.drawString("Main Menu", 365, 372);
+		g.drawString("Quit", 365, 412);
 		cursor.render(g);
 	}
 }

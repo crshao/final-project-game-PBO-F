@@ -45,7 +45,7 @@ public class GameState extends State {
 	
 	private void updateStage1() {
 		if(player.getHealth() == 0 || timer == 0)
-			stageScript = new GameOver(new Cursor_GameOver(game, 360, 320, Assets.player), stageScript.getPlayer().getScore());
+			stageScript = new GameOver(new Cursor_GameOver(game, 345, 320, Assets.player), stageScript.getPlayer().getScore());
 	}
 	
 	private void updateGameOver() {
