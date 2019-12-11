@@ -126,15 +126,15 @@ public class Game implements Runnable{
 	}
 	
 	public synchronized void stop() {
-		if(!running)
-			return;
 		running = false;
-		display.getFrame().setVisible(false);
+		display.closeFrame();
 		
 		try {
 			thread.join();
 		} catch(InterruptedException e) {
 			e.printStackTrace();
 		}
+		if(running)
+			return;
 	}
 }

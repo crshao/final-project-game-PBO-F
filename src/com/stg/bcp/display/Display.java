@@ -43,4 +43,9 @@ public class Display {
 	public JFrame getFrame() {
 		return frame;
 	}
+	
+	public void closeFrame() {
+		frame.setVisible(false);
+		frame.dispose();
+	}
 }

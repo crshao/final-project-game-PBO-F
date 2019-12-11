@@ -11,6 +11,7 @@ public class GameOver extends StageScript{
 	public GameOver(Cursor cursor) {
 		super(null, null, null);
 		this.cursor = cursor;
+		
 	}
 	
 	public Cursor getCursor() {

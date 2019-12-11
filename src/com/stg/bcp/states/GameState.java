@@ -22,6 +22,7 @@ public class GameState extends State {
 	private void initState() {
 		player = new Player(game, 256, 512, 32, 32, Assets.player);
 		stageScript = new Stage1(new ArrayList<>(), new ArrayList<>(), player);
+//		stageScript = new GameOver(new Cursor(game, 360, 360, Assets.player));
 	}
 	
 	private void updateStage1() {
