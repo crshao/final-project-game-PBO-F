@@ -72,35 +72,9 @@ public class Player extends Object{
 		if((!game.getKeyManager().fire || weaponSlot == 1) && fireball < maxFireball)
 			fireball++;
 		// Input Shoot
-		if(game.getKeyManager().fire) {
-			if(weaponSlot == 1) {
-				bullets.add(new Bullet(x+8, y-4, Assets.bullet_01, 0, 16, "b1"));
-				if(power >= 50) {
-					bullets.add(new Bullet(x, y-2, Assets.bullet_01, 0, 16, "b1"));
-					bullets.add(new Bullet(x+16, y-2, Assets.bullet_01, 0, 16, "b1"));
-				}
-				if(power >= 100) {
-					bullets.add(new Bullet(x-12, y, Assets.bullet_01, 0, 16, "b1"));
-					bullets.add(new Bullet(x+28, y, Assets.bullet_01, 0, 16, "b1"));
-				}
-			}
+		if(game.getKeyManager().fire)
+			shoot();
 			
-			if(weaponSlot == 2 && !shotDelayed && fireball > 2) {
-				fireball -= 6;
-				bullets.add(new Bullet(x+8, y-8, 8, 8, Assets.bullet_02, 0, 8, "b2"));
-				bullets.add(new Bullet(x, y-8, 8, 8, Assets.bullet_02, -1, 8, "b2"));
-				bullets.add(new Bullet(x+16, y-8, 8, 8, Assets.bullet_02, 1, 8, "b2"));
-				bullets.add(new Bullet(x-4, y+8, 8, 8, Assets.bullet_02, -2, 8, "b2"));
-				bullets.add(new Bullet(x+20, y+8, 8, 8, Assets.bullet_02, 2, 8, "b2"));
-			}
-			if(!shotDelayed) {
-				delay++;
-				if(delay == 6) {
-					shotDelayed = true;
-				}
-			}
-		}
-		
 		// Change Shot type
 		if(game.getKeyManager().change && !buttonPressed) {
 			if(weaponSlot == 1)
@@ -135,6 +109,35 @@ public class Player extends Object{
 		if((game.getKeyManager().right || game.getKeyManager().right2)
 				&& (int) x < borderRight)
 			moveX += 3;
+	}
+	
+	private void shoot() {
+		if(weaponSlot == 1) {
+			bullets.add(new Bullet(x+8, y-4, Assets.bullet_01, 0, 16, "b1"));
+			if(power >= 50) {
+				bullets.add(new Bullet(x, y-2, Assets.bullet_01, 0, 16, "b1"));
+				bullets.add(new Bullet(x+16, y-2, Assets.bullet_01, 0, 16, "b1"));
+			}
+			if(power >= 100) {
+				bullets.add(new Bullet(x-12, y, Assets.bullet_01, 0, 16, "b1"));
+				bullets.add(new Bullet(x+28, y, Assets.bullet_01, 0, 16, "b1"));
+			}
+		}
+		
+		if(weaponSlot == 2 && !shotDelayed && fireball > 2) {
+			fireball -= 6;
+			bullets.add(new Bullet(x+8, y-8, 8, 8, Assets.bullet_02, 0, 8, "b2"));
+			bullets.add(new Bullet(x, y-8, 8, 8, Assets.bullet_02, -1, 8, "b2"));
+			bullets.add(new Bullet(x+16, y-8, 8, 8, Assets.bullet_02, 1, 8, "b2"));
+			bullets.add(new Bullet(x-4, y+8, 8, 8, Assets.bullet_02, -2, 8, "b2"));
+			bullets.add(new Bullet(x+20, y+8, 8, 8, Assets.bullet_02, 2, 8, "b2"));
+		}
+		if(!shotDelayed) {
+			delay++;
+			if(delay == 6) {
+				shotDelayed = true;
+			}
+		}
 	}
 	
 	@Override

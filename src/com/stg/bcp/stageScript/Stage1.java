@@ -49,6 +49,10 @@ public class Stage1 extends StageScript{
 		}
 	}
 	
+	public StatusScreen getStatusScreen() {
+		return status;
+	}
+	
 	@Override
 	public void tick() {
 		mainBackground.tick();

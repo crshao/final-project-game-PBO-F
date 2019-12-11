@@ -8,7 +8,7 @@ import com.stg.bcp.GameObject.object.Player;
 
 public class StatusScreen {
 	
-	private int health, score, power, fireball;
+	private int health, score, power, fireball, timer;
 	private Player player;
 	
 	public StatusScreen(Player player) {
@@ -22,6 +22,10 @@ public class StatusScreen {
 		fireball = player.getFireball();
 	}
 	
+	public void setTimer(int timer) {
+		this.timer = timer;
+	}
+	
 	public void render(Graphics g) {
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("Consolas", Font.PLAIN, 32));
@@ -31,6 +35,7 @@ public class StatusScreen {
 		g.drawString("Health", 520, 128);
 		g.drawString("Power", 520, 224);
 		g.drawString("Fireball", 520, 320);
+		g.drawString("Timer: " + timer, 520, 416);
 		
 		//Draw Outer Border
 		g.drawRect(520, 132, 102, 28);
