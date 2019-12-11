@@ -1,9 +1,11 @@
 package com.stg.bcp.states;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import com.stg.bcp.Game;
 import com.stg.bcp.GameObject.Cursor_GameOver;
+import com.stg.bcp.GameObject.Cursor_MainMenu;
 import com.stg.bcp.GameObject.object.Player;
 import com.stg.bcp.gfx.Assets;
 import com.stg.bcp.stageScript.GameOver;
@@ -18,7 +20,18 @@ public class GameState extends State {
 	
 	public GameState(Game game) {
 		super(game);
-		initState();
+		mainMenu();
+	}
+	private void mainMenu() {
+		stageScript = new MainMenu(new Cursor_MainMenu(game, 340,310, Assets.player));
+		
+	}
+	
+	private void updateMainMenu() {
+		if(((MainMenu)stageScript).getCursor().getTag() == "Play")
+			initState();
+		else if(((MainMenu)stageScript).getCursor().getTag() == "Quit")
+			game.setRunning(false);
 	}
 	
 	private void initState() {
@@ -38,7 +51,7 @@ public class GameState extends State {
 		if(((GameOver)stageScript).getCursor().getTag() == "Retry")
 			initState();
 		else if(((GameOver)stageScript).getCursor().getTag() == "Main Menu")
-			; // Diisi
+			mainMenu(); 
 		else if(((GameOver)stageScript).getCursor().getTag() == "Quit")
 			game.setRunning(false);
 	}
@@ -54,7 +67,10 @@ public class GameState extends State {
 		stageScript.tick();
 		
 		
-		if(stageScript instanceof MainMenu)
+		if(stageScript instanceof MainMenu) {
+			if(game.getKeyManager().enter)
+				updateMainMenu();
+		}
 			;
 		if(stageScript instanceof Stage1) {
 			counter++;

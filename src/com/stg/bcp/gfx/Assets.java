@@ -25,7 +25,7 @@ public class Assets {
 		beam1 = ImageLoader.loadImage("/textures/beam1.png");
 		player = ImageLoader.loadImage("/textures/player.png");
 		powerUp = ImageLoader.loadImage("/textures/powerUp.png");
-		mainmenu = ImageLoader.loadImage("/textures/images.jpg");
+		mainmenu = ImageLoader.loadImage("/textures/space.png");
 	}
 	
 }

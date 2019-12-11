@@ -7,24 +7,52 @@ public class Cursor_MainMenu extends Cursor{
 	
 	//Atur Batas Atas dan Bawah
 	private static final int
-	upperLimitY = 0,
-	lowerLimitY = 576;
+	upperLimitY = 300,
+	lowerLimitY = 400;
+	private boolean buttonPressed;
 	
 	public Cursor_MainMenu(Game game, int x, int y, BufferedImage image) {
 		super(game, x, y, image);
 		initCursor();
 	}
-
+	
 	@Override
 	protected void initCursor() {
-		// TODO Auto-generated method stub
-		
+		choice = 1;
+		tag = "Play";
+		buttonPressed = false;
 	}
-
+	
 	@Override
 	public void tick() {
-		// TODO Auto-generated method stub
-		
+		getInput();
+		setTag();
+	}
+	
+	private void getInput() {
+		if((game.getKeyManager().up || game.getKeyManager().up2) &&
+				y > upperLimitY && !buttonPressed) {
+			y -= 40;
+			choice--;
+			buttonPressed = true;
+		}
+		else if((game.getKeyManager().down || game.getKeyManager().down2) &&
+				y < lowerLimitY && !buttonPressed) {
+			y += 40;
+			choice++;
+			buttonPressed = true;
+		}
+		else if(!(game.getKeyManager().down || game.getKeyManager().down2) &&
+				!(game.getKeyManager().up || game.getKeyManager().up2))
+			buttonPressed = false;
+	}
+	
+	private void setTag() {
+		if(choice == 1)
+			tag = "Play";
+		if(choice == 2)
+			tag = "Quit";
 	}
 
 }
+
