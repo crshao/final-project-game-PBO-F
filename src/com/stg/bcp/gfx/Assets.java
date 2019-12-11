@@ -11,7 +11,7 @@ public class Assets {
 		player,
 		enemy1, enemy2,enemy3,
 		beam1,
-		powerUp;
+		powerUp,mainmenu;
 	
 	public static void init() {
 		background = ImageLoader.loadImage("/textures/background.png");
@@ -25,6 +25,7 @@ public class Assets {
 		beam1 = ImageLoader.loadImage("/textures/beam1.png");
 		player = ImageLoader.loadImage("/textures/player.png");
 		powerUp = ImageLoader.loadImage("/textures/powerUp.png");
+		mainmenu = ImageLoader.loadImage("/textures/images.jpg");
 	}
 	
 }
