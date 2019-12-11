@@ -40,7 +40,7 @@ public class GameState extends State {
 		if(((MainMenu)stageScript).getCursor().getTag() == "Play")
 			startStage1();
 		else if(((MainMenu)stageScript).getCursor().getTag() == "Quit")
-			game.setRunning(false);
+			System.exit(0);
 	}
 	
 	private void updateStage1() {
@@ -54,7 +54,7 @@ public class GameState extends State {
 		else if(((GameOver)stageScript).getCursor().getTag() == "Main Menu")
 			startMainMenu();
 		else if(((GameOver)stageScript).getCursor().getTag() == "Quit")
-			game.setRunning(false);
+			System.exit(0);
 	}
 	
 	private void secondPassed() {
