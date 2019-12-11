@@ -3,14 +3,12 @@ package com.stg.bcp.stageScript;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-
 import com.stg.bcp.GameObject.Cursor;
-import com.stg.bcp.background.StaticBackground;
-import com.stg.bcp.gfx.Assets;
+import com.stg.bcp.background.Background;
 
 public class MainMenu extends StageScript{
 	
-	StaticBackground a = new StaticBackground(100,200,Assets.mainmenu);
+	private Background background;
 	private Cursor cursor;
 	
 	public MainMenu(Cursor cursor) {

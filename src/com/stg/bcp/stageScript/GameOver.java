@@ -11,7 +11,6 @@ public class GameOver extends StageScript{
 	public GameOver(Cursor cursor) {
 		super(null, null, null);
 		this.cursor = cursor;
-		
 	}
 	
 	public Cursor getCursor() {
@@ -28,7 +27,8 @@ public class GameOver extends StageScript{
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, 768, 576);
 		g.setColor(Color.WHITE);
-		g.drawString("Retry", 384, 372);
+		g.drawString("Retry", 384, 332);
+		g.drawString("Main Menu", 384, 372);
 		g.drawString("Quit", 384, 412);
 		cursor.render(g);
 	}
