@@ -3,7 +3,13 @@ package com.stg.bcp.stageScript;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Collections;
+
 import com.stg.bcp.GameObject.Cursor;
+import com.stg.bcp.Score.Score;
+import com.stg.bcp.Score.ScoreComparator;
 
 public class GameOver extends StageScript{
 	
@@ -33,7 +39,9 @@ public class GameOver extends StageScript{
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, 768, 576);
 		g.setColor(Color.WHITE);
-		g.drawString("GAME OVER", 295, 240);
+		g.drawString("Leaderboard:", 295, 50);
+
+
 		
 		Font font2 = new Font("arial", Font.BOLD,20);
 		g.setFont(font2);
